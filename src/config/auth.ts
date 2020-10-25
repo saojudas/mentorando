@@ -1,5 +1,5 @@
 export default {
-  secret: '48fcc571b25b694fe7f22146e20e5486',
-  expiresIn: '3d',
+  secret: '1607f1b7ec91794eb0c3b2ae08d0ae62',
+  expiresIn: '7d',
 };
-// betterform
+// mentorando

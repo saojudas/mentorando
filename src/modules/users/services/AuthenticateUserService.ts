@@ -35,8 +35,14 @@ export default class AuthenticateUserService {
       throw new Exceptions('E-Mail or Password incorrect!', 401);
 
     const { secret, expiresIn } = authConfig;
-    const token = sign({}, secret, { subject: user.id, expiresIn });
 
+    const token = sign(
+      {
+        isTeacher: user.teacher !== null,
+      },
+      secret,
+      { subject: user.id, expiresIn },
+    );
     return { user, token };
   }
 }
