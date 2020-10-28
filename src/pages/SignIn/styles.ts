@@ -1,6 +1,12 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const Container = styled.div`
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -51,7 +57,7 @@ export const Presentation = styled.div`
 export const AccessContainer = styled.div`
   background: ${props => props.theme.colors.background};
   height: 100vh;
-  width: 700px;
+  width: 540px;
 
   padding: 60px 40px;
 
@@ -97,5 +103,13 @@ export const RememberMeContainer = styled.section`
   a {
     color: ${props => props.theme.colors.primary};
     font-weight: bold;
+
+    cursor: pointer;
+
+    transition: color 0.4s;
+
+    &:hover {
+      color: ${props => shade(0.2, props.theme.colors.primary)};
+    }
   }
 `;

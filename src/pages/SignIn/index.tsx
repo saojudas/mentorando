@@ -1,6 +1,13 @@
-import React, { useContext, useCallback, useRef } from 'react';
+import React, { useContext, useCallback, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ThemeContext } from 'styled-components';
-import { FaFacebookF, FaGoogle, FaMailBulk, FaRegEye } from 'react-icons/fa';
+import {
+  FaFacebookF,
+  FaRegEyeSlash,
+  FaGoogle,
+  FaMailBulk,
+  FaRegEye,
+} from 'react-icons/fa';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -24,20 +31,24 @@ import {
 const SignIn: React.FC = () => {
   const { colors } = useContext(ThemeContext);
 
+  const [isShow, setIsShow] = useState(false);
+
   const formRef = useRef<FormHandles>(null);
+
+  const handleShowPassword = useCallback(() => setIsShow(!isShow), [isShow]);
 
   const handleSubmit = useCallback(async (data: object) => {
     try {
       const schema = Yup.object().shape({
         email: Yup.string()
-          .required('E-mail obrigatório!')
-          .email('Digite um e-mail válido!'),
+          .email('Digite um e-mail válido!')
+          .required('E-mail obrigatório!'),
         password: Yup.string().min(6, 'No mínimo 6 dígitos!'),
       });
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
+      await schema.validate(data, { abortEarly: false });
+
+      formRef.current?.setErrors({});
     } catch (err) {
       const errors = getValidationErrors(err);
 
@@ -86,14 +97,16 @@ const SignIn: React.FC = () => {
 
           <Input
             name="password"
-            icon={FaRegEye}
+            type={isShow ? 'text' : 'password'}
+            icon={isShow ? FaRegEye : FaRegEyeSlash}
             placeholder="Digite sua senha"
+            iconClick={handleShowPassword}
           />
 
           <RememberMeContainer>
             <Checkbox name="is_student" label="Lembrar-me" />
 
-            <a href="/">Esqueçeu sua senha?</a>
+            <Link to="/forgot-password">Esqueçeu sua senha?</Link>
           </RememberMeContainer>
 
           <ActionButons>
