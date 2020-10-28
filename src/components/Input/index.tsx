@@ -10,15 +10,22 @@ import { IconBaseProps } from 'react-icons';
 import { FaInfoCircle } from 'react-icons/fa';
 import { useField } from '@unform/core';
 import { ThemeContext } from 'styled-components';
+import Ink from 'react-ink';
 
-import { Container, Error } from './styles';
+import { Container, IconContainer, Error } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   icon?: React.ComponentType<IconBaseProps>;
+  iconClick?: () => void;
 }
 
-const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
+const Input: React.FC<InputProps> = ({
+  name,
+  icon: Icon,
+  iconClick,
+  ...rest
+}) => {
   const { colors } = useContext(ThemeContext);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -49,7 +56,7 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
   return (
     <Container isErrored={!!error} isFocused={isFocused} isFilled={isFilled}>
       {error && (
-        <Error title={error || ''}>
+        <Error title={error}>
           <FaInfoCircle color={colors.red} size={20} />
         </Error>
       )}
@@ -62,7 +69,12 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
         {...rest}
       />
 
-      {Icon && <Icon size={20} />}
+      {Icon && (
+        <IconContainer onClick={iconClick}>
+          <Icon size={20} />
+          <Ink />
+        </IconContainer>
+      )}
     </Container>
   );
 };

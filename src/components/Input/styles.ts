@@ -60,11 +60,30 @@ export const Container = styled.div<ContainerProps>`
   }
 
   svg:nth-of-type(1) {
-    margin-right: 8px;
+    cursor: pointer;
   }
 
   svg:nth-of-type(2) {
     margin-left: 8px;
+  }
+`;
+
+export const IconContainer = styled.div`
+  background: transparent;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: #eee;
   }
 `;
 
