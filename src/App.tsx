@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import SignIn from './pages/SignIn';
+import Routes from './routes';
 
 import GlobalStyle from './styles/global';
 
@@ -10,7 +10,7 @@ import light from './styles/themes/light';
 
 const App: React.FC = () => (
   <ThemeProvider theme={light}>
-    <SignIn />
+    <Routes />
     <GlobalStyle />
   </ThemeProvider>
 );
