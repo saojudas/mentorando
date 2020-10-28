@@ -28,6 +28,8 @@ export const Container = styled.button<IContainerProps>`
   align-items: center;
   justify-content: center;
 
+  transition: background-color 0.4s;
+
   &:hover {
     color: ${props => props.outline && lighten(0.2, props.color)};
     background: ${props => !props.outline && shade(0.2, props.color)};
