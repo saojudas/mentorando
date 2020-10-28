@@ -9,7 +9,10 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button: React.FC<IButtonProps> = ({
-  outline, color, children, ...rest
+  outline,
+  color,
+  children,
+  ...rest
 }) => (
   <Container type="button" outline={outline} color={color} {...rest}>
     {children}

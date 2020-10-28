@@ -32,16 +32,16 @@ export const Container = styled.label`
 
     border-radius: 6px;
     background-color: #eee;
-    border: 1px solid ${(props) => props.theme.colors.primary};
+    border: 1px solid ${props => props.theme.colors.primary};
   }
 
   &:hover input ~ span {
-    background-color: ${(props) => props.theme.colors.primaryLighter};
-    border: 1px solid ${(props) => props.theme.colors.primary};
+    background-color: ${props => props.theme.colors.primaryLighter};
+    border: 1px solid ${props => props.theme.colors.primary};
   }
 
   & input:checked ~ span {
-    background-color: ${(props) => props.theme.colors.primary};
+    background-color: ${props => props.theme.colors.primary};
   }
 
   span:after {

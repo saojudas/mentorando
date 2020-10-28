@@ -1,11 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
-import {
-  FaFacebookF,
-  FaGoogle,
-  FaMailBulk,
-  FaRegEye,
-} from 'react-icons/fa';
+import { FaFacebookF, FaGoogle, FaMailBulk, FaRegEye } from 'react-icons/fa';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -29,12 +24,14 @@ const SignIn: React.FC = () => {
       <Presentation>
         <h1>Mentorando</h1>
 
-        <p>Acolhimento e acompanhamento nos seus estudos de forma totalmente conectada.</p>
+        <p>
+          Acolhimento e acompanhamento nos seus estudos de forma totalmente
+          conectada.
+        </p>
 
         <img src={landingImg} alt="Mentorando" />
       </Presentation>
       <AccessContainer>
-
         <h1>Login</h1>
 
         <span>Acesse a plataforma inserindo e-mail e senha.</span>
@@ -63,9 +60,7 @@ const SignIn: React.FC = () => {
         </RememberMeContainer>
 
         <ActionButons>
-          <Button color={colors.primary}>
-            Entrar
-          </Button>
+          <Button color={colors.primary}>Entrar</Button>
           <Button color={colors.blue} outline>
             Cadastrar
           </Button>

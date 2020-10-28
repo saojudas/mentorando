@@ -9,9 +9,9 @@ interface IContainerProps {
 export const Container = styled.button<IContainerProps>`
   min-width: 180px;
 
-  background: ${(props) => (props.outline ? 'transparent' : props.color)};
-  color: ${(props) => (props.outline ? props.color : props.theme.colors.white)};
-  border: 1px solid ${(props) => props.color};
+  background: ${props => (props.outline ? 'transparent' : props.color)};
+  color: ${props => (props.outline ? props.color : props.theme.colors.white)};
+  border: 1px solid ${props => props.color};
 
   padding: 8px 16px;
   border-radius: 4px;
@@ -29,8 +29,8 @@ export const Container = styled.button<IContainerProps>`
   justify-content: center;
 
   &:hover {
-    color: ${(props) => props.outline && lighten(0.2, props.color)};
-    background: ${(props) => !props.outline && shade(0.2, props.color)};
+    color: ${props => props.outline && lighten(0.2, props.color)};
+    background: ${props => !props.outline && shade(0.2, props.color)};
   }
 
   svg {

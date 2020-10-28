@@ -7,7 +7,7 @@ export const Container = styled.div`
 `;
 
 export const Presentation = styled.div`
-  background: ${(props) => props.theme.colors.primary};
+  background: ${props => props.theme.colors.primary};
   height: 100vh;
   width: 100%;
 
@@ -18,7 +18,7 @@ export const Presentation = styled.div`
     top: 80px;
     left: 100px;
 
-    color: ${(props) => props.theme.colors.white};
+    color: ${props => props.theme.colors.white};
     font-size: 42px;
     font-weight: normal;
     letter-spacing: 4px;
@@ -33,7 +33,7 @@ export const Presentation = styled.div`
 
     max-width: 700px;
 
-    color: ${(props) => props.theme.colors.white};
+    color: ${props => props.theme.colors.white};
     font-size: 24px;
     font-weight: normal;
 
@@ -49,7 +49,7 @@ export const Presentation = styled.div`
 `;
 
 export const AccessContainer = styled.div`
-  background: ${(props) => props.theme.colors.background};
+  background: ${props => props.theme.colors.background};
   height: 100vh;
   width: 700px;
 
@@ -61,17 +61,16 @@ export const AccessContainer = styled.div`
   justify-content: center;
 
   h1 {
-    color: ${(props) => props.theme.colors.blue};
+    color: ${props => props.theme.colors.blue};
     font-weight: normal;
     font-size: 48px;
   }
 
   > span:nth-of-type(1) {
-    color: ${(props) => props.theme.colors.black};
+    color: ${props => props.theme.colors.black};
     font-weight: normal;
     font-size: 16px;
     margin-top: 32px;
-
   }
 
   > span:nth-of-type(2) {
@@ -96,7 +95,7 @@ export const RememberMeContainer = styled.section`
   justify-content: space-between;
 
   a {
-    color: ${(props) => props.theme.colors.primary};
+    color: ${props => props.theme.colors.primary};
     font-weight: bold;
   }
 `;
