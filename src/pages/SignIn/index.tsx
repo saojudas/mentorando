@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 import { FaFacebookF, FaGoogle, FaMailBulk, FaRegEye } from 'react-icons/fa';
+import { Form } from '@unform/web';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -19,6 +20,10 @@ import {
 const SignIn: React.FC = () => {
   const { colors } = useContext(ThemeContext);
 
+  function handleSubmit(data: object): void {
+    console.log(data);
+  }
+
   return (
     <Container>
       <Presentation>
@@ -31,41 +36,56 @@ const SignIn: React.FC = () => {
 
         <img src={landingImg} alt="Mentorando" />
       </Presentation>
-      <AccessContainer>
-        <h1>Login</h1>
 
-        <span>Acesse a plataforma inserindo e-mail e senha.</span>
+      <Form onSubmit={handleSubmit}>
+        <AccessContainer>
+          <h1>Login</h1>
 
-        <ActionButons>
-          <Button color={colors.primary}>
-            <FaFacebookF color={colors.white} size={18} />
-            Facebook
-          </Button>
-          <Button color={colors.blue}>
-            <FaGoogle color={colors.white} size={18} />
-            Google
-          </Button>
-        </ActionButons>
+          <span>Acesse a plataforma inserindo e-mail e senha.</span>
 
-        <span>OU</span>
+          <ActionButons>
+            <Button color={colors.primary}>
+              <FaFacebookF color={colors.white} size={18} />
+              Facebook
+            </Button>
 
-        <Input name="email" icon={FaMailBulk} placeholder="Digite seu e-mail" />
+            <Button color={colors.blue}>
+              <FaGoogle color={colors.white} size={18} />
+              Google
+            </Button>
+          </ActionButons>
 
-        <Input name="password" icon={FaRegEye} placeholder="Digite sua senha" />
+          <span>OU</span>
 
-        <RememberMeContainer>
-          <Checkbox name="is_student" label="Lembrar-me" />
+          <Input
+            name="email"
+            icon={FaMailBulk}
+            placeholder="Digite seu e-mail"
+          />
 
-          <a href="/">Esqueçeu sua senha?</a>
-        </RememberMeContainer>
+          <Input
+            name="password"
+            icon={FaRegEye}
+            placeholder="Digite sua senha"
+          />
 
-        <ActionButons>
-          <Button color={colors.primary}>Entrar</Button>
-          <Button color={colors.blue} outline>
-            Cadastrar
-          </Button>
-        </ActionButons>
-      </AccessContainer>
+          <RememberMeContainer>
+            <Checkbox name="is_student" label="Lembrar-me" />
+
+            <a href="/">Esqueçeu sua senha?</a>
+          </RememberMeContainer>
+
+          <ActionButons>
+            <Button type="submit" color={colors.primary}>
+              Entrar
+            </Button>
+
+            <Button color={colors.blue} outline>
+              Cadastrar
+            </Button>
+          </ActionButons>
+        </AccessContainer>
+      </Form>
     </Container>
   );
 };
