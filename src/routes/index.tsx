@@ -3,6 +3,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
+import Home from '../pages/Home';
+
 import Header from '../components/Header';
 
 const Routes: React.FC = () => (
@@ -11,7 +13,7 @@ const Routes: React.FC = () => (
       <Route path="/header" component={Header} />
       <Route exact path="/" component={SignIn} />
       <Route path="/register" component={SignUp} />
-      {/* <Route path="/home" component={Home} /> */}
+      <Route path="/home" component={Home} />
     </Switch>
   </BrowserRouter>
 );
