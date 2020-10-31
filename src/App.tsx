@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 
 import Routes from './routes';
 
-import Header from './components/Header';
+// import Header from './components/Header';
 
 import GlobalStyle from './styles/global';
 
