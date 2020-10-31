@@ -20,6 +20,8 @@ export const Container = styled.div<ContainerProps>`
   align-items: center;
   justify-content: space-between;
 
+  height: 46px;
+
   & + div {
     margin-top: 32px;
   }
