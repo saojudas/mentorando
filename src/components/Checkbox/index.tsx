@@ -7,10 +7,10 @@ interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ label }) => (
+const Checkbox: React.FC<CheckboxProps> = ({ label, ...rest }) => (
   <Container>
     {label}
-    <input type="checkbox" />
+    <input type="checkbox" {...rest} />
     <span />
   </Container>
 );

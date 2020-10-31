@@ -25,7 +25,7 @@ export const Container = styled.label`
 
   span {
     position: absolute;
-    top: 4px;
+    top: 3px;
     left: 0;
     height: 18px;
     width: 18px;
