@@ -34,6 +34,12 @@ class UsersRepository implements IUsersRepository {
     return users;
   }
 
+  public async findById(user_id: string): Promise<User | undefined> {
+    const user = await this.ormRepository.findOne(user_id);
+
+    return user;
+  }
+
   public async findByEmail(email: string): Promise<User | undefined> {
     const user = await this.ormRepository.findOne({
       where: { email },
@@ -50,6 +56,10 @@ class UsersRepository implements IUsersRepository {
     });
 
     return user;
+  }
+
+  public async delete(id: string): Promise<void> {
+    await this.ormRepository.delete(id);
   }
 }
 
