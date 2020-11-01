@@ -12,5 +12,6 @@ usersRouter.post('/', usersController.create);
 usersRouter.use(ensureAuthenticated);
 
 usersRouter.get('/', usersController.index);
+usersRouter.get('/:id', usersController.show);
 
 export default usersRouter;
