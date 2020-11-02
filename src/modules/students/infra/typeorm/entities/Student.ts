@@ -3,12 +3,14 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
 import User from '../../../../users/infra/typeorm/entities/User';
+import Teacher from '../../../../teachers/infra/typeorm/entities/Teacher';
 
 @Entity('students')
 class Student {
@@ -33,6 +35,13 @@ class Student {
   @OneToOne(() => User, user => user.student)
   @JoinColumn({ name: 'user_id' })
   user: User;
+
+  @Column()
+  teacher_id: string;
+
+  @ManyToOne(() => Teacher)
+  @JoinColumn({ name: 'teacher_id' })
+  teacher: Teacher;
 
   @CreateDateColumn()
   created_at: Date;
