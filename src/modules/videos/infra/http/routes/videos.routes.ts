@@ -10,6 +10,7 @@ videosRouter.use(ensureAuthenticated);
 
 const videosController = new VideosController();
 
+videosRouter.get('/', videosController.index);
 videosRouter.post('/', videosController.create);
 
 export default videosRouter;
