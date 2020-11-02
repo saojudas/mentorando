@@ -2,9 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import Tag from '../../../../videos/infra/typeorm/entities/Tag';
 
 @Entity('areas')
 class Area {
@@ -14,9 +17,8 @@ class Area {
   @Column()
   name: string;
 
-  // @OneToMany(() => Tags, tag => tag)
-  // @JoinColumn({ name: 'tags_id' })
-  // tags: Tags;
+  @OneToMany(() => Tag, tags => tags.area)
+  tags: Tag[];
 
   @CreateDateColumn()
   created_at: Date;
