@@ -15,6 +15,9 @@ import AreasRepository from '@modules/teachers/infra/typeorm/repositories/AreasR
 import ITagsRepository from '@modules/videos/repositories/ITagsRepository';
 import TagsRepository from '@modules/videos/infra/typeorm/repositories/TagsRepository';
 
+import IMeetsRepository from '@modules/meet/repositories/IMeetsRepository';
+import MeetsRepository from '@modules/meet/infra/typeorm/repositories/MeetsRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
@@ -33,6 +36,11 @@ container.registerSingleton<IStudentsRepository>(
 container.registerSingleton<IAreasRepository>(
   'AreasRepository',
   AreasRepository,
+);
+
+container.registerSingleton<IMeetsRepository>(
+  'MeetsRepository',
+  MeetsRepository,
 );
 
 container.registerSingleton<ITagsRepository>('TagsRepository', TagsRepository);
