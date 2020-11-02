@@ -28,6 +28,19 @@ class TagsRepository implements ITagsRepository {
 
   public async find(): Promise<Tag[]> {
     const tags = await this.ormRepository.find();
+
+    return tags;
+  }
+
+  public async findById(id: string): Promise<Tag | undefined> {
+    const tag = await this.ormRepository.findOne(id);
+
+    return tag;
+  }
+
+  public async findByIds(ids: string[]): Promise<Tag[]> {
+    const tags = await this.ormRepository.findByIds(ids);
+
     return tags;
   }
 

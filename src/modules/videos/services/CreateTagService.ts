@@ -17,13 +17,19 @@ class CreateTagService {
   ) {}
 
   public async execute({ name, area_id }: IRequest): Promise<Tag> {
-    const checkTagExists = await this.tagsRepository.findByName(name);
-
     if (!area_id) {
       throw new AppError('You must send an area id!');
     }
 
-    if (checkTagExists) {
+    const checkAreaExists = await this.tagsRepository.findById(area_id);
+
+    if (checkAreaExists) {
+      throw new AppError('Area not found!', 404);
+    }
+
+    const checkTagNameExists = await this.tagsRepository.findByName(name);
+
+    if (checkTagNameExists) {
       throw new AppError('This tag already exists!');
     }
 

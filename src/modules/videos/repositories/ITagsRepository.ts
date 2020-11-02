@@ -1,10 +1,12 @@
-import Tags from '../infra/typeorm/entities/Tag';
+import Tag from '../infra/typeorm/entities/Tag';
 
-import ICreateTagsDTO from '../dtos/ICreateTagDTO';
+import ICreateTagDTO from '../dtos/ICreateTagDTO';
 
 export default interface ITagsRepository {
-  create(data: ICreateTagsDTO): Promise<Tags>;
-  save(tag: Tags): Promise<Tags>;
-  find(): Promise<Tags[]>;
-  findByName(name: string): Promise<Tags | undefined>;
+  create(data: ICreateTagDTO): Promise<Tag>;
+  save(tag: Tag): Promise<Tag>;
+  find(): Promise<Tag[]>;
+  findById(id: string): Promise<Tag | undefined>;
+  findByIds(ids: string[]): Promise<Tag[]>;
+  findByName(name: string): Promise<Tag | undefined>;
 }
