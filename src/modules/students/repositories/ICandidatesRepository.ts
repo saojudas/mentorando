@@ -8,4 +8,5 @@ export default interface IStudentsRepository {
   find(): Promise<Candidate[]>;
   findById(id: string): Promise<Candidate | undefined>;
   findByStudentId(student_id: string): Promise<Candidate | undefined>;
+  delete(id: string): Promise<void>;
 }

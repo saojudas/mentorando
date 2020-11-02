@@ -7,7 +7,7 @@ import Candidate from '../infra/typeorm/entities/Candidate';
 @injectable()
 class ListAdvisorsCandidatesService {
   constructor(
-    @inject('candidatesRepository')
+    @inject('CandidatesRepository')
     private candidatesRepository: ICandidatesRepository,
   ) {}
 

@@ -52,6 +52,10 @@ class CandidatesRepository implements ICandidatesRepository {
 
     return candidate;
   }
+
+  public async delete(id: string): Promise<void> {
+    await this.ormRepository.delete(id);
+  }
 }
 
 export default CandidatesRepository;

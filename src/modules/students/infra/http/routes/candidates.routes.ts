@@ -12,5 +12,6 @@ candidatesRouter.use(ensureAuthenticated);
 
 candidatesRouter.get('/', candidatesController.index);
 candidatesRouter.post('/', candidatesController.create);
+candidatesRouter.delete('/', candidatesController.delete);
 
 export default candidatesRouter;
