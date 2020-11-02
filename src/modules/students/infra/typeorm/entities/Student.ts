@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  ManyToMany,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -11,6 +12,7 @@ import {
 
 import User from '../../../../users/infra/typeorm/entities/User';
 import Teacher from '../../../../teachers/infra/typeorm/entities/Teacher';
+import Report from '../../../../advisors/infra/typeorm/entities/Report';
 
 @Entity('students')
 class Student {
@@ -42,6 +44,9 @@ class Student {
   @ManyToOne(() => Teacher)
   @JoinColumn({ name: 'teacher_id' })
   teacher: Teacher;
+
+  @ManyToMany(() => Report, report => report.students)
+  reports: Report[];
 
   @CreateDateColumn()
   created_at: Date;

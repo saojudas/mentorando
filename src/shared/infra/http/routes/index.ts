@@ -7,6 +7,7 @@ import candidatesRouter from '@modules/students/infra/http/routes/candidates.rou
 import tagsRouter from '@modules/videos/infra/http/routes/tags.routes';
 import videosRouter from '@modules/videos/infra/http/routes/videos.routes';
 import meetsRouter from '@modules/meet/infra/http/routes/meets.routes';
+import reportsRouter from '@modules/advisors/infra/http/routes/reports.routes';
 
 const routes = Router();
 
@@ -17,5 +18,6 @@ routes.use('/candidates', candidatesRouter);
 routes.use('/tags', tagsRouter);
 routes.use('/videos', videosRouter);
 routes.use('/meets', meetsRouter);
+routes.use('/reports', reportsRouter);
 
 export default routes;

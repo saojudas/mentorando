@@ -24,6 +24,9 @@ import VideosRepository from '@modules/videos/infra/typeorm/repositories/VideosR
 import IMeetsRepository from '@modules/meet/repositories/IMeetsRepository';
 import MeetsRepository from '@modules/meet/infra/typeorm/repositories/MeetsRepository';
 
+import IReportsRepository from '@modules/advisors/repositories/IReportsRepository';
+import ReportsRepository from '@modules/advisors/infra/typeorm/repositories/ReportsRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
@@ -60,3 +63,8 @@ container.registerSingleton<ICandidatesRepository>(
 );
 
 container.registerSingleton<ITagsRepository>('TagsRepository', TagsRepository);
+
+container.registerSingleton<IReportsRepository>(
+  'ReportsRepository',
+  ReportsRepository,
+);
