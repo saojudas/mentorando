@@ -2,23 +2,28 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-import Tag from '../../../../videos/infra/typeorm/entities/Tag';
+import Area from '../../../../teachers/infra/typeorm/entities/Area';
 
-@Entity('areas')
-class Area {
+@Entity('tags')
+class Tag {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
   name: string;
 
-  @OneToMany(() => Tag, tags => tags.area)
-  tags: Tag[];
+  @Column()
+  area_id: string;
+
+  @ManyToOne(() => Area)
+  @JoinColumn({ name: 'area_id' })
+  area: Area;
 
   @CreateDateColumn()
   created_at: Date;
@@ -27,4 +32,4 @@ class Area {
   updated_at: Date;
 }
 
-export default Area;
+export default Tag;
