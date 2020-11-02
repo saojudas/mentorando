@@ -2,11 +2,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
+import Meet from '../../../../meet/infra/typeorm/entities/Meet';
 import Teacher from '../../../../teachers/infra/typeorm/entities/Teacher';
 import Student from '../../../../students/infra/typeorm/entities/Student';
 
@@ -29,6 +32,10 @@ class User {
 
   @OneToOne(() => Student, student => student.user)
   student: Student;
+
+  @ManyToMany(() => Meet, meet => meet.members)
+  @JoinTable()
+  meets: Meet[];
 
   @CreateDateColumn()
   created_at: Date;

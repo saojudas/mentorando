@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, In } from 'typeorm';
 
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
@@ -38,6 +38,14 @@ class UsersRepository implements IUsersRepository {
     const user = await this.ormRepository.findOne(user_id);
 
     return user;
+  }
+
+  public async findByIds(ids: string[]): Promise<User[]> {
+    const users = await this.ormRepository.find({
+      where: { id: In(ids) },
+    });
+
+    return users;
   }
 
   public async findByEmail(email: string): Promise<User | undefined> {
