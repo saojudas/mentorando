@@ -3,7 +3,7 @@ import { sign } from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import Exceptions from '@shared/errors/Exceptions';
+import AppError from '@shared/errors/AppError';
 import authConfig from '@config/auth';
 import User from '../infra/typeorm/entities/User';
 
@@ -27,12 +27,12 @@ export default class AuthenticateUserService {
   public async execute({ email, password }: IRequest): Promise<Response> {
     const user = await this.usersRepository.findByEmail(email);
 
-    if (!user) throw new Exceptions('E-Mail or Password incorrect!', 401);
+    if (!user) throw new AppError('E-Mail or Password incorrect!', 401);
 
     const passwordMatched = bcrypt.compare(password, user.password_hash);
 
     if (!passwordMatched)
-      throw new Exceptions('E-Mail or Password incorrect!', 401);
+      throw new AppError('E-Mail or Password incorrect!', 401);
 
     const { secret, expiresIn } = authConfig;
 

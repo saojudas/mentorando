@@ -2,7 +2,7 @@ import { injectable, inject } from 'tsyringe';
 
 import IAreasRepository from '@modules/teachers/repositories/IAreasRepository';
 import Area from '@modules/teachers/infra/typeorm/entities/Area';
-import Exceptions from '@shared/errors/Exceptions';
+import AppError from '@shared/errors/AppError';
 
 interface IRequest {
   name: string;
@@ -20,11 +20,11 @@ class CreateAreaService {
     const checkAreaExists = await this.areasRepository.findByName(name);
 
     if (!isTeacher) {
-      throw new Exceptions('Only teacher can create an area!', 401);
+      throw new AppError('Only teacher can create an area!', 401);
     }
 
     if (checkAreaExists) {
-      throw new Exceptions('This area already exists!');
+      throw new AppError('This area already exists!');
     }
 
     const area = await this.areasRepository.create({ name });

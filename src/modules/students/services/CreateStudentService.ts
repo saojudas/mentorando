@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
-import Exceptions from '@shared/errors/Exceptions';
+import AppError from '@shared/errors/AppError';
 
 import IStudentsRepository from '@modules/students/repositories/IStudentsRepository';
 import Student from '@modules/students/infra/typeorm/entities/Student';
@@ -30,7 +30,7 @@ class CreateStudentService {
     );
 
     if (checkRegistrationExists) {
-      throw new Exceptions('Student with this registration already exists!');
+      throw new AppError('Student with this registration already exists!');
     }
 
     const student = await this.studentsRepository.create({

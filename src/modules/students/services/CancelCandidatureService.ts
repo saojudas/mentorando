@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
-import Exceptions from '@shared/errors/Exceptions';
+import AppError from '@shared/errors/AppError';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ICandidatesRepository from '@modules/students/repositories/ICandidatesRepository';
@@ -23,7 +23,7 @@ class CancelCandidatureService {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
-      throw new Exceptions('User not found!');
+      throw new AppError('User not found!');
     }
 
     const checkCandidateExists = await this.candidatesRepository.findByStudentId(
@@ -31,7 +31,7 @@ class CancelCandidatureService {
     );
 
     if (!checkCandidateExists) {
-      throw new Exceptions('Candidate not found!', 404);
+      throw new AppError('Candidate not found!', 404);
     }
 
     await this.candidatesRepository.delete(checkCandidateExists.id);

@@ -2,7 +2,7 @@ import { injectable, inject } from 'tsyringe';
 
 import ITagsRepository from '@modules/videos/repositories/ITagsRepository';
 import Tag from '@modules/videos/infra/typeorm/entities/Tag';
-import Exceptions from '@shared/errors/Exceptions';
+import AppError from '@shared/errors/AppError';
 
 interface IRequest {
   name: string;
@@ -20,11 +20,11 @@ class CreateTagService {
     const checkTagExists = await this.tagsRepository.findByName(name);
 
     if (!area_id) {
-      throw new Exceptions('You must send an area id!');
+      throw new AppError('You must send an area id!');
     }
 
     if (checkTagExists) {
-      throw new Exceptions('This tag already exists!');
+      throw new AppError('This tag already exists!');
     }
 
     const tag = await this.tagsRepository.create({ name, area_id });

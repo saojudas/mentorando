@@ -4,7 +4,7 @@ import express, { NextFunction, Request, Response } from 'express';
 
 import 'express-async-errors';
 
-import Exceptions from '@shared/errors/Exceptions';
+import AppError from '@shared/errors/AppError';
 import routes from './routes';
 
 import '@shared/infra/typeorm';
@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(routes);
 
 app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
-  if (err instanceof Exceptions) {
+  if (err instanceof AppError) {
     return response.status(err.statusCode).json({
       status: 'error',
       message: err.message,

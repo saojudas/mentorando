@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
-import Exceptions from '@shared/errors/Exceptions';
+import AppError from '@shared/errors/AppError';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ICandidatesRepository from '@modules/students/repositories/ICandidatesRepository';
@@ -25,19 +25,19 @@ class CandidateAdvisorService {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
-      throw new Exceptions('User not found!');
+      throw new AppError('User not found!');
     }
 
     if (user.teacher) {
-      throw new Exceptions('Only students can be candidate!', 401);
+      throw new AppError('Only students can be candidate!', 401);
     }
 
     if (user.student.is_advisor) {
-      throw new Exceptions('Only students who are not advisor can apply', 403);
+      throw new AppError('Only students who are not advisor can apply', 403);
     }
 
     if (!user.student.teacher_id) {
-      throw new Exceptions(
+      throw new AppError(
         'You need to have a linked teacher to apply to be an advisor!',
         403,
       );
@@ -48,7 +48,7 @@ class CandidateAdvisorService {
     );
 
     if (checkCandidateExists) {
-      throw new Exceptions(
+      throw new AppError(
         'You already is a candidate, wait for your approval!',
         403,
       );

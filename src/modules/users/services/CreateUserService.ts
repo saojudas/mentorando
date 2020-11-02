@@ -1,7 +1,7 @@
 import { injectable, inject, container } from 'tsyringe';
 import { hash } from 'bcryptjs';
 
-import Exceptions from '@shared/errors/Exceptions';
+import AppError from '@shared/errors/AppError';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import CreateTeacherService from '@modules/teachers/services/CreateTeacherService';
@@ -38,13 +38,13 @@ class CreateUserService {
     is_student,
   }: IRequest): Promise<User> {
     if (password !== confirm_password) {
-      throw new Exceptions('Password and confirm password not match!');
+      throw new AppError('Password and confirm password not match!');
     }
 
     const checkEmailExists = await this.usersRepository.findByEmail(email);
 
     if (checkEmailExists) {
-      throw new Exceptions('User with this email already exists!');
+      throw new AppError('User with this email already exists!');
     }
 
     const checkUsernameExists = await this.usersRepository.findByUsername(
@@ -52,7 +52,7 @@ class CreateUserService {
     );
 
     if (checkUsernameExists) {
-      throw new Exceptions('User with this username already exists!');
+      throw new AppError('User with this username already exists!');
     }
 
     const password_hash = await hash(password, 8);
@@ -85,7 +85,7 @@ class CreateUserService {
     } catch (err) {
       await this.usersRepository.delete(user.id);
 
-      throw new Exceptions(err.message);
+      throw new AppError(err.message);
     }
 
     return user;
