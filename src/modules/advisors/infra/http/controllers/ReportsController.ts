@@ -2,8 +2,17 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import CreateReportService from '@modules/advisors/services/CreateReportService';
+import ListReportsService from '@modules/advisors/services/ListReportsService';
 
 export default class ReportsController {
+  public async index(request: Request, response: Response): Promise<Response> {
+    const listReportsService = container.resolve(ListReportsService);
+
+    const reports = await listReportsService.execute();
+
+    return response.json(reports);
+  }
+
   public async create(request: Request, response: Response): Promise<Response> {
     const {
       students_ids,

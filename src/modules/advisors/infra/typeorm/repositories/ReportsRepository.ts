@@ -25,6 +25,12 @@ class ReportsRepository implements IReportsRepository {
 
     return report;
   }
+
+  public async find(): Promise<Report[]> {
+    const reports = await this.ormRepository.find();
+
+    return reports;
+  }
 }
 
 export default ReportsRepository;

@@ -9,6 +9,7 @@ const reportsController = new ReportsController();
 
 reportsRouter.use(ensureAuthenticated);
 
+reportsRouter.get('/', reportsController.index);
 reportsRouter.post('/', reportsController.create);
 
 export default reportsRouter;
