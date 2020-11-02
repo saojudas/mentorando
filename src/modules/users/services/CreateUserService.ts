@@ -44,7 +44,7 @@ class CreateUserService {
     const checkEmailExists = await this.usersRepository.findByEmail(email);
 
     if (checkEmailExists) {
-      throw new Exceptions('Student with this email already exists!');
+      throw new Exceptions('User with this email already exists!');
     }
 
     const checkUsernameExists = await this.usersRepository.findByUsername(
@@ -52,7 +52,7 @@ class CreateUserService {
     );
 
     if (checkUsernameExists) {
-      throw new Exceptions('Student with this username already exists!');
+      throw new Exceptions('User with this username already exists!');
     }
 
     const password_hash = await hash(password, 8);
@@ -63,23 +63,29 @@ class CreateUserService {
       password_hash,
     });
 
-    if (is_student) {
-      const createStudentService = container.resolve(CreateStudentService);
+    try {
+      if (is_student) {
+        const createStudentService = container.resolve(CreateStudentService);
 
-      user.student = await createStudentService.execute({
-        name,
-        registration,
-        university,
-        user_id: user.id,
-      });
-    } else {
-      const createTeacherService = container.resolve(CreateTeacherService);
+        user.student = await createStudentService.execute({
+          name,
+          registration,
+          university,
+          user_id: user.id,
+        });
+      } else {
+        const createTeacherService = container.resolve(CreateTeacherService);
 
-      user.teacher = await createTeacherService.execute({
-        name,
-        university,
-        user_id: user.id,
-      });
+        user.teacher = await createTeacherService.execute({
+          name,
+          university,
+          user_id: user.id,
+        });
+      }
+    } catch (err) {
+      await this.usersRepository.delete(user.id);
+
+      throw new Exceptions(err.message);
     }
 
     return user;
