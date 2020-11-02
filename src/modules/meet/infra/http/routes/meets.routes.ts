@@ -12,5 +12,6 @@ meetRouter.use(ensureAuthenticated);
 
 meetRouter.get('/', meetsController.index);
 meetRouter.post('/', meetsController.create);
+meetRouter.delete('/:id', meetsController.delete);
 
 export default meetRouter;

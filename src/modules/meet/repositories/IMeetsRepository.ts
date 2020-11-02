@@ -8,4 +8,5 @@ export default interface IMeetsRepository {
   find(): Promise<Meet[]>;
   findById(id: string): Promise<Meet | undefined>;
   findByTitle(title: string): Promise<Meet | undefined>;
+  delete(id: string): Promise<void>;
 }

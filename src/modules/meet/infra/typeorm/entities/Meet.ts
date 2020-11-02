@@ -43,7 +43,11 @@ class Meet {
     cascade: ['insert', 'update'],
     eager: true,
   })
-  @JoinTable()
+  @JoinTable({
+    name: 'meets_members',
+    joinColumn: { name: 'meet_id' },
+    inverseJoinColumn: { name: 'user_id' },
+  })
   members: User[];
 
   @CreateDateColumn()

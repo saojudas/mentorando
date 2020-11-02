@@ -3,10 +3,12 @@ import { container } from 'tsyringe';
 
 import ListMeetsService from '@modules/meet/services/ListMeetsService';
 import CreateMeetService from '@modules/meet/services/CreateMeetService';
+import CancelMeetService from '@modules/meet/services/CancelMeetService';
 
 export default class MeetsController {
   public async index(request: Request, response: Response): Promise<Response> {
     const listMeetsService = container.resolve(ListMeetsService);
+
     const meets = await listMeetsService.execute();
 
     return response.json(meets);
@@ -36,5 +38,15 @@ export default class MeetsController {
     });
 
     return response.json(area);
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const cancelMeetService = container.resolve(CancelMeetService);
+
+    await cancelMeetService.execute({ meet_id: id });
+
+    return response.send();
   }
 }

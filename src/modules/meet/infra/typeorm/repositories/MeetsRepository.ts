@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, TableForeignKey } from 'typeorm';
 
 import ICreateMeetDTO from '@modules/meet/dtos/ICreateMeetDTO';
 import IMeetsRepository from '@modules/meet/repositories/IMeetsRepository';
@@ -41,6 +41,10 @@ class MeetsRepository implements IMeetsRepository {
     const meet = await this.ormRepository.findOne({ where: { title } });
 
     return meet;
+  }
+
+  public async delete(id: string): Promise<void> {
+    await this.ormRepository.delete(id);
   }
 }
 
