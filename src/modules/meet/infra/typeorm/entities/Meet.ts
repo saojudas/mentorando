@@ -41,6 +41,7 @@ class Meet {
 
   @ManyToMany(() => User, user => user.meets, {
     cascade: ['insert', 'update'],
+    eager: true,
   })
   @JoinTable()
   members: User[];

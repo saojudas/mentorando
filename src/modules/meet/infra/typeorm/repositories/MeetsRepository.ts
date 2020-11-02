@@ -31,6 +31,12 @@ class MeetsRepository implements IMeetsRepository {
     return meet;
   }
 
+  public async findById(id: string): Promise<Meet | undefined> {
+    const meet = await this.ormRepository.findOne(id);
+
+    return meet;
+  }
+
   public async findByTitle(title: string): Promise<Meet | undefined> {
     const meet = await this.ormRepository.findOne({ where: { title } });
 
