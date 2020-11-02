@@ -34,7 +34,6 @@ class User {
   student: Student;
 
   @ManyToMany(() => Meet, meet => meet.members)
-  @JoinTable()
   meets: Meet[];
 
   @CreateDateColumn()
