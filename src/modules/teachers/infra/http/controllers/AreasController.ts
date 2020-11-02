@@ -7,6 +7,7 @@ import CreateAreaService from '@modules/teachers/services/CreateAreaService';
 export default class AreasController {
   public async index(request: Request, response: Response): Promise<Response> {
     const listAreasService = container.resolve(ListAreasService);
+
     const areas = await listAreasService.execute();
 
     return response.json(areas);

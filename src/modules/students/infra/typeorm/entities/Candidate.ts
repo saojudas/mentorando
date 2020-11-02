@@ -9,32 +9,20 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import User from '../../../../users/infra/typeorm/entities/User';
+import Student from './Student';
 import Teacher from '../../../../teachers/infra/typeorm/entities/Teacher';
 
-@Entity('students')
-class Student {
+@Entity('candidates')
+class Candidate {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  name: string;
+  student_id: string;
 
-  @Column()
-  university: string;
-
-  @Column()
-  registration: string;
-
-  @Column()
-  is_advisor: boolean;
-
-  @Column()
-  user_id: string;
-
-  @OneToOne(() => User, user => user.student)
-  @JoinColumn({ name: 'user_id' })
-  user: User;
+  @OneToOne(() => Student)
+  @JoinColumn({ name: 'student_id' })
+  student: Student;
 
   @Column()
   teacher_id: string;
@@ -43,6 +31,9 @@ class Student {
   @JoinColumn({ name: 'teacher_id' })
   teacher: Teacher;
 
+  @Column()
+  aprovement: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 
@@ -50,4 +41,4 @@ class Student {
   updated_at: Date;
 }
 
-export default Student;
+export default Candidate;
