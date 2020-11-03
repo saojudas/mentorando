@@ -19,22 +19,19 @@ export const Presentation = styled.div`
 
   position: relative;
 
-  h1 {
+  a img {
     position: absolute;
     top: 80px;
     left: 100px;
 
-    color: ${props => props.theme.colors.white};
-    font-size: 42px;
-    font-weight: normal;
-    letter-spacing: 4px;
+    width: 400px;
 
     z-index: 10;
   }
 
   p {
     position: absolute;
-    top: 240px;
+    top: 280px;
     left: 100px;
 
     max-width: 700px;
@@ -46,7 +43,7 @@ export const Presentation = styled.div`
     z-index: 10;
   }
 
-  img {
+  > img {
     width: 100%;
 
     position: absolute;

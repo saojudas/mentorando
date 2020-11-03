@@ -42,7 +42,7 @@ export const ActionButtons = styled.div`
 
   display: flex;
 
-  button + button {
+  a + a {
     margin-left: 52px;
   }
 `;
