@@ -1,15 +1,17 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
+import Route from './Route';
 
+import Landing from '../pages/Landing';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
-import Header from '../components/Header';
+// import Header from '../components/Header';
 
 const Routes: React.FC = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/header" component={Header} />
-      <Route exact path="/" component={SignIn} />
+      <Route exact path="/" component={Landing} landing />
+      <Route path="/login" component={SignIn} />
       <Route path="/register" component={SignUp} />
       {/* <Route path="/home" component={Home} /> */}
     </Switch>
