@@ -24,5 +24,7 @@ export default {
 
     background: '#FBFBFB',
     text: '#313131',
+
+    textInPrimary: '#FBFBFB',
   },
 };
