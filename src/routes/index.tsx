@@ -5,6 +5,7 @@ import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import Home from '../pages/Home';
 import Meet from '../pages/Meet';
+import Report from '../pages/Report';
 
 import Header from '../components/Header';
 
@@ -16,6 +17,7 @@ const Routes: React.FC = () => (
       <Route path="/register" component={SignUp} />
       <Route path="/home" component={Home} />
       <Route path="/meet" component={Meet} />
+      <Route path="/report" component={Report} />
     </Switch>
   </BrowserRouter>
 );
