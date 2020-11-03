@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import Home from '../pages/Home';
+import Meet from '../pages/Meet';
 
 import Header from '../components/Header';
 
@@ -14,6 +15,7 @@ const Routes: React.FC = () => (
       <Route exact path="/" component={SignIn} />
       <Route path="/register" component={SignUp} />
       <Route path="/home" component={Home} />
+      <Route path="/meet" component={Meet} />
     </Switch>
   </BrowserRouter>
 );
