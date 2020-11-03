@@ -4,6 +4,7 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
+import TextArea from '../../components/TextArea';
 import Input from '../../components/Input';
 import DatePicker from '../../components/DatePicker';
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -23,10 +24,13 @@ const Report: React.FC = () => {
   const handleSubmit = useCallback(async (data: object) => {
     try {
       const schema = Yup.object().shape({
-        email: Yup.string()
-          .email('Digite um e-mail válido!')
-          .required('E-mail obrigatório!'),
-        password: Yup.string().min(6, 'No mínimo 6 dígitos!'),
+        members: Yup.string().required(
+          'é necessário pelo menos um aluno para criar um relatório',
+        ),
+        subject: Yup.string().required('Assunto obrigatório'),
+        date_meet: Yup.string().required('Data obrigatório'),
+        start_hour: Yup.string().required('Horário de início obrigatório'),
+        end_hour: Yup.string().required('Horário de fim obrigatório'),
       });
 
       await schema.validate(data, { abortEarly: false });
@@ -49,6 +53,14 @@ const Report: React.FC = () => {
           <Input
             name="members"
             placeholder="Selecione os alunos que participaram da reunião."
+          />
+        </InputsContainer>
+
+        <InputsContainer color={colors.primary}>
+          <span>Assunto</span>
+          <TextArea
+            name="subject"
+            placeholder="Digite uma descrição para o seu relatório"
           />
         </InputsContainer>
 
