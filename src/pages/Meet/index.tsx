@@ -23,10 +23,14 @@ const Meet: React.FC = () => {
   const handleSubmit = useCallback(async (data: object) => {
     try {
       const schema = Yup.object().shape({
-        email: Yup.string()
-          .email('Digite um e-mail válido!')
-          .required('E-mail obrigatório!'),
-        password: Yup.string().min(6, 'No mínimo 6 dígitos!'),
+        title: Yup.string().required('Título obrigatório!'),
+        meet: Yup.string().required('Link do encontro obrigatório'),
+        members: Yup.string().required(
+          'é necessário pelo menos um membro para criar uma reunião',
+        ),
+        date_meet: Yup.string().required('Data obrigatório'),
+        start_hour: Yup.string().required('Horário de início obrigatório'),
+        end_hour: Yup.string().required('Horário de fim obrigatório'),
       });
 
       await schema.validate(data, { abortEarly: false });
