@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 import Lottie from 'react-lottie';
 
-import Button from '../../components/Button';
+import Link from '../../components/Link';
 
 import animationData from '../../assets/hero.json';
 import logoImg from '../../assets/logo.svg';
@@ -21,12 +21,14 @@ const Landing: React.FC = () => {
         conectada.
       </p>
 
-      <ActionButtons>
-        <Button color={colors.orange}>Inscrever-se</Button>
+      <ActionButtons color={colors.orange}>
+        <Link to="/register" color={colors.orange}>
+          Inscrever-se
+        </Link>
 
-        <Button color={colors.white} outline>
+        <Link to="/login" color={colors.white} outline>
           Fazer login
-        </Button>
+        </Link>
       </ActionButtons>
 
       <Hero>

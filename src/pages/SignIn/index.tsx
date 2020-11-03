@@ -1,5 +1,5 @@
 import React, { useContext, useCallback, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link as ReactLink } from 'react-router-dom';
 import { ThemeContext } from 'styled-components';
 import {
   FaFacebookF,
@@ -14,11 +14,13 @@ import * as Yup from 'yup';
 
 import getValidationErrors from '../../utils/getValidationErrors';
 
+import Link from '../../components/Link';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Checkbox from '../../components/Checkbox';
 
 import landingImg from '../../assets/landing.png';
+import logoImg from '../../assets/logo.svg';
 
 import {
   Container,
@@ -59,7 +61,9 @@ const SignIn: React.FC = () => {
   return (
     <Container>
       <Presentation>
-        <h1>Mentorando</h1>
+        <ReactLink to="/">
+          <img src={logoImg} alt="Mentorando" />
+        </ReactLink>
 
         <p>
           Acolhimento e acompanhamento nos seus estudos de forma totalmente
@@ -106,7 +110,7 @@ const SignIn: React.FC = () => {
           <RememberMeContainer>
             <Checkbox name="is_student" label="Lembrar-me" />
 
-            <Link to="/forgot-password">Esqueçeu sua senha?</Link>
+            <ReactLink to="/forgot-password">Esqueçeu sua senha?</ReactLink>
           </RememberMeContainer>
 
           <ActionButons>
@@ -114,9 +118,9 @@ const SignIn: React.FC = () => {
               Entrar
             </Button>
 
-            <Button color={colors.blue} outline>
+            <Link to="/register" color={colors.blue} outline>
               Cadastrar
-            </Button>
+            </Link>
           </ActionButons>
         </AccessContainer>
       </Form>

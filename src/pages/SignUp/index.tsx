@@ -1,4 +1,5 @@
 import React, { useContext, useCallback, useRef, useState } from 'react';
+import { Link as ReactLink } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import { FaRegEyeSlash, FaMailBulk, FaRegEye } from 'react-icons/fa';
@@ -7,11 +8,13 @@ import * as Yup from 'yup';
 
 import getValidationErrors from '../../utils/getValidationErrors';
 
+import Link from '../../components/Link';
 import Input from '../../components/Input';
 import Checkbox from '../../components/Checkbox';
 import Button from '../../components/Button';
 
 import landingImg from '../../assets/landing.png';
+import logoImg from '../../assets/logo.svg';
 
 import {
   Container,
@@ -53,10 +56,12 @@ const SignUp: React.FC = () => {
         university: Yup.string().required('Universidade obrigatória'),
         registration: Yup.string().required('Matrícula obrigatória'),
         password: Yup.string().min(6, 'No mínimo 6 dígitos!'),
-        confirm_password: Yup.string().oneOf(
-          [Yup.ref('password')],
-          'Senha e Confirmação de senha não estão corretas',
-        ),
+        confirm_password: Yup.string()
+          .required('Confirme sua senha')
+          .oneOf(
+            [Yup.ref('password')],
+            'Senha e Confirmação de senha não estão corretas',
+          ),
       });
 
       await schema.validate(data, { abortEarly: false });
@@ -72,7 +77,9 @@ const SignUp: React.FC = () => {
   return (
     <Container>
       <Presentation>
-        <h1>Mentorando</h1>
+        <ReactLink to="/">
+          <img src={logoImg} alt="Mentorando" />
+        </ReactLink>
 
         <p>
           Acolhimento e acompanhamento nos seus estudos de forma totalmente
@@ -123,9 +130,9 @@ const SignUp: React.FC = () => {
             <Button type="submit" color={colors.primary}>
               Cadastrar
             </Button>
-            <Button type="submit" color={colors.blue} outline>
+            <Link to="/login" color={colors.blue} outline>
               Login
-            </Button>
+            </Link>
           </ActionButons>
         </NewAccountContainer>
       </Form>
