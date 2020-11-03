@@ -94,7 +94,7 @@ export const Error = styled(Tooltip)`
   margin-right: 4px;
 
   span {
-    color: ${props => props.theme.colors.white};
+    color: ${props => props.theme.colors.white} !important;
     background: ${props => props.theme.colors.red};
 
     &::before {
