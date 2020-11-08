@@ -101,6 +101,7 @@ const Meet: React.FC = () => {
               timeCaption="Hora"
               timeFormat="HH:mm"
               dateFormat="HH:mm"
+              inputName="end_hour"
             />
           </InputsContainer>
         </DateTimeInputsContainer>

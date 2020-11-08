@@ -55,6 +55,7 @@ export const Container = styled.div<ContainerProps>`
     flex: 1;
     border: 0;
     color: ${props => props.theme.colors.black};
+    width: 240px;
 
     &::placeholder {
       color: ${props => props.theme.colors.grayLight};

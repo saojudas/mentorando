@@ -22,6 +22,7 @@ registerLocale('pt-BR', pt_br);
 
 interface DatePickerProps extends Omit<ReactDatePickerProps, 'onChange'> {
   name: string;
+  inputName?: string;
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({ name, ...rest }) => {
@@ -48,7 +49,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ name, ...rest }) => {
     registerField({
       name: fieldName,
       ref: inputRef.current,
-      path: 'value',
+      path: 'props.selected',
       clearValue: (ref: any) => {
         ref.clear();
       },
@@ -70,6 +71,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ name, ...rest }) => {
         onBlur={handleInputBlur}
         ref={inputRef}
         locale="pt-BR"
+        name={name}
         {...rest}
       />
     </Container>
