@@ -6,7 +6,7 @@ import Landing from '../pages/Landing';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import Home from '../pages/Home';
-import Meet from '../pages/Meet';
+import NewMeet from '../pages/NewMeet';
 import Report from '../pages/Report';
 
 const Routes: React.FC = () => (
@@ -16,7 +16,7 @@ const Routes: React.FC = () => (
       <Route path="/login" component={SignIn} />
       <Route path="/register" component={SignUp} />
       <Route path="/home" component={Home} />
-      <Route path="/meet" component={Meet} />
+      <Route path="/meet" component={NewMeet} />
       <Route path="/report" component={Report} />
     </Switch>
   </BrowserRouter>
