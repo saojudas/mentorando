@@ -15,7 +15,7 @@ const Select: React.FC<SelectProps> = ({ name, ...rest }) => {
   const { colors } = useContext(ThemeContext);
   const selectRef = useRef(null);
   const { fieldName, defaultValue, registerField, error } = useField(name);
-  console.log(error);
+
   useEffect(() => {
     registerField({
       name: fieldName,
@@ -42,7 +42,7 @@ const Select: React.FC<SelectProps> = ({ name, ...rest }) => {
       classNamePrefix="react-select"
       {...rest}
       styles={{
-        control: (styles, state) => ({
+        control: styles => ({
           ...styles,
           borderRadius: 4,
           padding: '2px 5px',
