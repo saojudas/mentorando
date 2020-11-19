@@ -1,7 +1,8 @@
 import React from 'react';
 import Ink from 'react-ink';
+import { Link as ReactLink } from 'react-router-dom';
 
-import { Ancor } from './styles';
+import { Container } from './styles';
 
 interface LinkProps {
   to: string;
@@ -11,10 +12,12 @@ interface LinkProps {
 
 const Link: React.FC<LinkProps> = ({ to, color, outline, children }) => {
   return (
-    <Ancor to={to} color={color} outline={outline}>
-      {children}
-      <Ink />
-    </Ancor>
+    <Container color={color} outline={outline}>
+      <ReactLink to={to}>
+        {children}
+        <Ink />
+      </ReactLink>
+    </Container>
   );
 };
 
