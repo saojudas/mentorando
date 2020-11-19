@@ -8,6 +8,7 @@ const Home: React.FC = () => {
   return (
     <Container>
       <CardVideo />
+      <h1>Home</h1>
     </Container>
   );
 };
