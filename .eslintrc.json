@@ -46,9 +46,10 @@
     "linebreak-style": 0,
     "no-nested-ternary": 0,
     "no-console": ["error", { "allow": ["tron", "log"] }],
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "no-param-reassign": "off"
   },
   "settings": {
     "import/resolver": {
