@@ -1,4 +1,5 @@
 import React, { useContext, useCallback, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link as ReactLink } from 'react-router-dom';
 import { ThemeContext } from 'styled-components';
 import {
@@ -11,6 +12,8 @@ import {
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
+
+import { signInRequest } from '../../store/modules/auth/actions';
 
 import getValidationErrors from '../../utils/getValidationErrors';
 
@@ -33,30 +36,39 @@ import {
 const SignIn: React.FC = () => {
   const { colors } = useContext(ThemeContext);
 
+  const dispatch = useDispatch();
+
   const [isShow, setIsShow] = useState(false);
 
   const formRef = useRef<FormHandles>(null);
 
   const handleShowPassword = useCallback(() => setIsShow(!isShow), [isShow]);
 
-  const handleSubmit = useCallback(async (data: object) => {
-    try {
-      const schema = Yup.object().shape({
-        email: Yup.string()
-          .email('Digite um e-mail válido!')
-          .required('E-mail obrigatório!'),
-        password: Yup.string().min(6, 'No mínimo 6 dígitos!'),
-      });
+  const handleSubmit = useCallback(
+    async (data: object) => {
+      try {
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .email('Digite um e-mail válido!')
+            .required('E-mail obrigatório!'),
+          password: Yup.string().min(6, 'No mínimo 6 dígitos!'),
+        });
 
-      await schema.validate(data, { abortEarly: false });
+        await schema.validate(data, { abortEarly: false });
 
-      formRef.current?.setErrors({});
-    } catch (err) {
-      const errors = getValidationErrors(err);
+        formRef.current?.setErrors({});
 
-      formRef.current?.setErrors(errors);
-    }
-  }, []);
+        const { email, password } = data as { email: string; password: string };
+
+        dispatch(signInRequest(email, password));
+      } catch (err) {
+        const errors = getValidationErrors(err);
+
+        formRef.current?.setErrors(errors);
+      }
+    },
+    [dispatch],
+  );
 
   return (
     <Container>
@@ -118,7 +130,7 @@ const SignIn: React.FC = () => {
               Entrar
             </Button>
 
-            <Link to="/register" color={colors.blue} outline>
+            <Link to="/register" color={colors.blue}>
               Cadastrar
             </Link>
           </ActionButons>
