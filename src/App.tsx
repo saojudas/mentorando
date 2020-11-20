@@ -7,8 +7,6 @@ import './config/ReactotronConfig';
 
 import Routes from './routes';
 
-// import Header from './components/Header';
-
 import GlobalStyle from './styles/global';
 
 import light from './styles/themes/light';
@@ -20,7 +18,6 @@ const App: React.FC = () => (
   <ThemeProvider theme={light}>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        {/* <Header /> */}
         <Routes />
         <GlobalStyle />
       </PersistGate>
