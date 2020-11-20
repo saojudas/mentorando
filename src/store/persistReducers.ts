@@ -7,7 +7,7 @@ export default (reducers: Reducer): Reducer<any, AnyAction> => {
     {
       key: '@MENTORANDO',
       storage,
-      whitelist: [],
+      whitelist: ['auth'],
     },
     reducers,
   );
