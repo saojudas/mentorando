@@ -5,6 +5,8 @@ import AuthLayout from '../pages/_layouts/auth';
 import LandingLayout from '../pages/_layouts/landing';
 import DefaultLayout from '../pages/_layouts/layout';
 
+import { store } from '../store';
+
 interface RouteWrapperProps extends RouteProps {
   landing?: boolean;
   isPrivate?: boolean;
@@ -17,14 +19,14 @@ const RouteWrapper: React.FC<RouteWrapperProps> = ({
   component: Component,
   ...rest
 }) => {
-  const signed = true;
+  const { signed } = store.getState().auth;
 
   if (!signed && isPrivate) {
-    <Redirect to="/" />;
+    return <Redirect to="/" />;
   }
 
   if (signed && !isPrivate) {
-    <Redirect to="/home" />;
+    return <Redirect to="/home" />;
   }
 
   const Layout = landing ? LandingLayout : signed ? DefaultLayout : AuthLayout;
