@@ -8,6 +8,7 @@ import SignUp from '../pages/SignUp';
 import Home from '../pages/Home';
 import NewMeet from '../pages/NewMeet';
 import Report from '../pages/Report';
+import Advisers from '../pages/Advisers';
 
 import history from '../services/history';
 
@@ -20,6 +21,7 @@ const Routes: React.FC = () => (
       <Route path="/home" component={Home} isPrivate />
       <Route path="/meet" component={NewMeet} isPrivate />
       <Route path="/report" component={Report} isPrivate />
+      <Route path="/advisers" component={Advisers} isPrivate />
     </Switch>
   </Router>
 );
