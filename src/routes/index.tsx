@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { Router, Switch } from 'react-router-dom';
 import Route from './Route';
 
 import Landing from '../pages/Landing';
@@ -9,17 +9,19 @@ import Home from '../pages/Home';
 import NewMeet from '../pages/NewMeet';
 import Report from '../pages/Report';
 
+import history from '../services/history';
+
 const Routes: React.FC = () => (
-  <BrowserRouter>
+  <Router history={history}>
     <Switch>
       <Route exact path="/" component={Landing} landing />
       <Route path="/login" component={SignIn} />
       <Route path="/register" component={SignUp} />
-      <Route path="/home" component={Home} />
-      <Route path="/meet" component={NewMeet} />
-      <Route path="/report" component={Report} />
+      <Route path="/home" component={Home} isPrivate />
+      <Route path="/meet" component={NewMeet} isPrivate />
+      <Route path="/report" component={Report} isPrivate />
     </Switch>
-  </BrowserRouter>
+  </Router>
 );
 
 export default Routes;
