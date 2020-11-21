@@ -109,4 +109,8 @@ export const RememberMeContainer = styled.section`
       color: ${props => shade(0.2, props.theme.colors.primary)};
     }
   }
+
+  > div {
+    width: 30%;
+  }
 `;
