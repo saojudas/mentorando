@@ -1,4 +1,5 @@
 import React, { useContext, useCallback, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link as ReactLink } from 'react-router-dom';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -16,6 +17,9 @@ import Button from '../../components/Button';
 import landingImg from '../../assets/landing.png';
 import logoImg from '../../assets/logo.svg';
 
+import { signUpRequest } from '../../store/modules/auth/actions';
+import { User } from '../../store/modules/auth/interfaces';
+
 import {
   Container,
   Presentation,
@@ -24,8 +28,16 @@ import {
   ActionButons,
 } from './styles';
 
+interface RadioOption {
+  id: string;
+  value: string;
+  label: string;
+}
+
 const SignUp: React.FC = () => {
   const { colors } = useContext(ThemeContext);
+
+  const dispatch = useDispatch();
 
   const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -41,38 +53,47 @@ const SignUp: React.FC = () => {
     [isShowConfirmPassword],
   );
 
-  const handleSubmit = useCallback(async (data: object) => {
-    try {
-      const schema = Yup.object().shape({
-        username: Yup.string()
-          .required('Username obrigatório')
-          .min(8, 'No mínimo 8 dígitos!'),
-        name: Yup.string()
-          .required('Nome de usuário obrigatório')
-          .max(150, 'No máximo 150 dígitos!'),
-        email: Yup.string()
-          .email('Digite um e-mail válido!')
-          .required('E-mail obrigatório!'),
-        university: Yup.string().required('Universidade obrigatória'),
-        registration: Yup.string().required('Matrícula obrigatória'),
-        password: Yup.string().min(6, 'No mínimo 6 dígitos!'),
-        confirm_password: Yup.string()
-          .required('Confirme sua senha')
-          .oneOf(
-            [Yup.ref('password')],
-            'Senha e Confirmação de senha não estão corretas',
-          ),
-      });
+  const radioOptions: RadioOption[] = [
+    { id: 'is_student', value: 'true', label: 'Sou aluno' },
+    { id: 'is_teacher', value: 'false', label: 'Sou professor' },
+  ];
 
-      await schema.validate(data, { abortEarly: false });
+  const handleSubmit = useCallback(
+    async (data: User) => {
+      try {
+        const schema = Yup.object().shape({
+          username: Yup.string().required('Username obrigatório'),
+          name: Yup.string()
+            .required('Nome de usuário obrigatório')
+            .max(150, 'No máximo 150 dígitos!'),
+          email: Yup.string()
+            .email('Digite um e-mail válido!')
+            .required('E-mail obrigatório!'),
+          university: Yup.string().required('Universidade obrigatória'),
+          registration: Yup.string().required('Matrícula obrigatória'),
+          password: Yup.string().min(6, 'No mínimo 6 dígitos!'),
+          confirm_password: Yup.string()
+            .required('Confirme sua senha')
+            .oneOf(
+              [Yup.ref('password')],
+              'Senha e Confirmação de senha não estão corretas',
+            ),
+          is_student: Yup.boolean().required(),
+        });
 
-      formRef.current?.setErrors({});
-    } catch (err) {
-      const errors = getValidationErrors(err);
+        await schema.validate(data, { abortEarly: false });
 
-      formRef.current?.setErrors(errors);
-    }
-  }, []);
+        formRef.current?.setErrors({});
+
+        dispatch(signUpRequest(data));
+      } catch (err) {
+        const errors = getValidationErrors(err);
+
+        formRef.current?.setErrors(errors);
+      }
+    },
+    [dispatch],
+  );
 
   return (
     <Container>
@@ -89,7 +110,11 @@ const SignUp: React.FC = () => {
         <img src={landingImg} alt="Mentorando" />
       </Presentation>
 
-      <Form ref={formRef} onSubmit={handleSubmit}>
+      <Form
+        ref={formRef}
+        onSubmit={handleSubmit}
+        initialData={{ checkbox: ['is_student'] }}
+      >
         <NewAccountContainer>
           <h1>Cadastre-se</h1>
 
@@ -98,14 +123,19 @@ const SignUp: React.FC = () => {
           </p>
 
           <Input name="username" placeholder="Defina um nome de usuário" />
+
           <Input name="name" placeholder="Seu nome completo" />
+
           <Input
             name="email"
             placeholder="Digite seu e-mail"
             icon={FaMailBulk}
           />
+
           <Input name="university" placeholder="Instituição de ensino" />
+
           <Input name="registration" placeholder="Matrícula" />
+
           <Input
             name="password"
             type={isShowPassword ? 'text' : 'password'}
@@ -113,6 +143,7 @@ const SignUp: React.FC = () => {
             placeholder="Digite sua senha"
             iconClick={handleShowPassword}
           />
+
           <Input
             name="confirm_password"
             type={isShowConfirmPassword ? 'text' : 'password'}
@@ -122,15 +153,15 @@ const SignUp: React.FC = () => {
           />
 
           <UserTypeContainer>
-            <Checkbox name="is_student" label="Sou Aluno" type="radio" />
-            <Checkbox name="is_student" label="Sou Professor" type="radio" />
+            <Checkbox name="is_student" options={radioOptions} type="radio" />
           </UserTypeContainer>
 
           <ActionButons>
             <Button type="submit" color={colors.primary}>
               Cadastrar
             </Button>
-            <Link to="/login" color={colors.blue} outline>
+
+            <Link to="/login" color={colors.blue}>
               Login
             </Link>
           </ActionButons>
