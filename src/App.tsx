@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'styled-components';
@@ -20,6 +21,7 @@ const App: React.FC = () => (
       <PersistGate persistor={persistor}>
         <Routes />
         <GlobalStyle />
+        <ToastContainer autoClose={3000} />
       </PersistGate>
     </Provider>
   </ThemeProvider>
