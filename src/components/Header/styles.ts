@@ -101,7 +101,7 @@ export const Actions = styled.ul`
   margin-top: 4px;
   padding: 8px 0;
 
-  width: 154px;
+  width: 184px;
 
   display: flex;
   flex-direction: column;

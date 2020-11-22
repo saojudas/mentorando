@@ -2,7 +2,7 @@ import React, { useContext, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from 'styled-components';
-import { FaUserCog, FaSignOutAlt } from 'react-icons/fa';
+import { FaUserCog, FaRegPlayCircle, FaSignOutAlt } from 'react-icons/fa';
 import Ink from 'react-ink';
 
 import { signOut } from '../../store/modules/auth/actions';
@@ -36,13 +36,13 @@ const Header: React.FC = () => {
       <NavigationBar color={colors.white}>
         <ul>
           <li>
-            <Link to="/#">HOME</Link>
+            <Link to="/">ASSISTIR VÍDEOS</Link>
           </li>
           <li>
             <Link to="/#">MEUS VÍDEOS</Link>
           </li>
           <li>
-            <Link to="/#">ASSISTIR VÍDEOS</Link>
+            <Link to="/new-candidate">SER CONSELHEIRO</Link>
           </li>
         </ul>
       </NavigationBar>
@@ -57,6 +57,13 @@ const Header: React.FC = () => {
               <Ink />
               <FaUserCog size={16} color={colors.black} />
               Meu perfil
+            </Link>
+          </li>
+          <li>
+            <Link to="/">
+              <Ink />
+              <FaRegPlayCircle size={16} color={colors.black} />
+              Meus vídeos
             </Link>
           </li>
           <li>
