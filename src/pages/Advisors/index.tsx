@@ -1,8 +1,9 @@
 import React from 'react';
 
 import AsideMenu from '../../components/AsideMenu';
+import CardUser from '../../components/CardUser';
 
-import { Container, Title, ContentSection, Content } from './styles';
+import { Container, Title, ContentSection, Content, Users } from './styles';
 
 const Advisors: React.FC = () => {
   return (
@@ -13,7 +14,21 @@ const Advisors: React.FC = () => {
       </Title>
       <ContentSection>
         <AsideMenu />
-        <Content />
+        <Content>
+          <Users>
+            <CardUser />
+            <CardUser />
+            <CardUser />
+            <CardUser />
+            <CardUser />
+            <CardUser />
+            <CardUser />
+            <CardUser />
+            <CardUser />
+            <CardUser />
+            <CardUser />
+          </Users>
+        </Content>
       </ContentSection>
     </Container>
   );
