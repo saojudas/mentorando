@@ -12,12 +12,12 @@ import { ThemeContext } from 'styled-components';
 
 import { Container, Error } from './styles';
 
-interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   name: string;
   maxCharacters?: number;
 }
 
-const TextArea: React.FC<TextAreaProps> = ({ name, ...rest }) => {
+const Textarea: React.FC<TextareaProps> = ({ name, ...rest }) => {
   const { colors } = useContext(ThemeContext);
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -69,4 +69,4 @@ const TextArea: React.FC<TextAreaProps> = ({ name, ...rest }) => {
   );
 };
 
-export default TextArea;
+export default Textarea;
