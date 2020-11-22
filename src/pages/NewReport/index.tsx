@@ -4,16 +4,20 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
-import TextArea from '../../components/TextArea';
+import AsideMenu from '../../components/AsideMenu';
+import Textarea from '../../components/Textarea';
 import Input from '../../components/Input';
 import DatePicker from '../../components/DatePicker';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import {
-  ActionButons,
   Container,
+  Title,
+  ContentSection,
+  Content,
   DateTimeInputsContainer,
-  InputsContainer,
+  Item,
+  ActionButons,
 } from './styles';
 import Button from '../../components/Button';
 
@@ -44,75 +48,84 @@ const NewReport: React.FC = () => {
   }, []);
 
   return (
-    <Container color={colors.white}>
-      <h1>Cadastrar novo relatório</h1>
+    <Container>
+      <Title>
+        <h1>Início</h1>
+        <section>teste</section>
+      </Title>
+      <ContentSection>
+        <AsideMenu />
+        <Content>
+          <h1>Cadastrar novo relatório</h1>
 
-      <Form ref={formRef} onSubmit={handleSubmit}>
-        <InputsContainer color={colors.primary}>
-          <span>Nome dos alunos</span>
-          <Input
-            name="members"
-            placeholder="Selecione os alunos que participaram da reunião."
-          />
-        </InputsContainer>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <Item color={colors.primary}>
+              <span>Nome dos alunos</span>
+              <Input
+                name="members"
+                placeholder="Selecione os alunos que participaram da reunião."
+              />
+            </Item>
 
-        <InputsContainer color={colors.primary}>
-          <span>Assunto</span>
-          <TextArea
-            name="subject"
-            placeholder="Digite uma descrição para o seu relatório"
-          />
-        </InputsContainer>
+            <Item color={colors.primary}>
+              <span>Assunto</span>
+              <Textarea
+                name="subject"
+                placeholder="Digite uma descrição para o seu relatório"
+              />
+            </Item>
 
-        <DateTimeInputsContainer>
-          <InputsContainer color={colors.primary}>
-            <span>Data do encontro</span>
-            <DatePicker
-              name="date_meet"
-              placeholderText="01/01/2020"
-              dateFormat="dd/MM/yyyy"
-            />
-          </InputsContainer>
+            <DateTimeInputsContainer>
+              <Item color={colors.primary}>
+                <span>Data do encontro</span>
+                <DatePicker
+                  name="date_meet"
+                  placeholderText="01/01/2020"
+                  dateFormat="dd/MM/yyyy"
+                />
+              </Item>
 
-          <InputsContainer color={colors.primary}>
-            <span>Horário de Inicio</span>
-            <DatePicker
-              name="start_hour"
-              placeholderText="20:00"
-              showTimeSelect
-              showTimeSelectOnly
-              timeIntervals={15}
-              timeCaption="Hora"
-              timeFormat="HH:mm"
-              dateFormat="HH:mm"
-            />
-          </InputsContainer>
+              <Item color={colors.primary}>
+                <span>Horário de Inicio</span>
+                <DatePicker
+                  name="start_hour"
+                  placeholderText="20:00"
+                  showTimeSelect
+                  showTimeSelectOnly
+                  timeIntervals={15}
+                  timeCaption="Hora"
+                  timeFormat="HH:mm"
+                  dateFormat="HH:mm"
+                />
+              </Item>
 
-          <InputsContainer color={colors.primary}>
-            <span>horário de Fim</span>
-            <DatePicker
-              name="end_hour"
-              placeholderText="21:00"
-              showTimeSelect
-              showTimeSelectOnly
-              timeIntervals={15}
-              timeCaption="Hora"
-              timeFormat="HH:mm"
-              dateFormat="HH:mm"
-            />
-          </InputsContainer>
-        </DateTimeInputsContainer>
+              <Item color={colors.primary}>
+                <span>horário de Fim</span>
+                <DatePicker
+                  name="end_hour"
+                  placeholderText="21:00"
+                  showTimeSelect
+                  showTimeSelectOnly
+                  timeIntervals={15}
+                  timeCaption="Hora"
+                  timeFormat="HH:mm"
+                  dateFormat="HH:mm"
+                />
+              </Item>
+            </DateTimeInputsContainer>
 
-        <ActionButons>
-          <Button type="submit" color={colors.orange}>
-            Cadastrar
-          </Button>
+            <ActionButons>
+              <Button type="submit" color={colors.orange}>
+                Cadastrar
+              </Button>
 
-          <Button color={colors.orange} outline>
-            Cancelar
-          </Button>
-        </ActionButons>
-      </Form>
+              <Button color={colors.orange} outline>
+                Cancelar
+              </Button>
+            </ActionButons>
+          </Form>
+        </Content>
+      </ContentSection>
     </Container>
   );
 };

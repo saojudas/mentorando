@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 
 import AsideMenu from '../../components/AsideMenu';
 import Input from '../../components/Input';
-import Textarea from '../../components/TextArea';
+import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
 import Button from '../../components/Button';
 import Link from '../../components/Link';
