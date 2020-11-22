@@ -17,7 +17,7 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   maxCharacters?: number;
 }
 
-const Textarea2: React.FC<TextareaProps> = ({ name, ...rest }) => {
+const Textarea: React.FC<TextareaProps> = ({ name, ...rest }) => {
   const { colors } = useContext(ThemeContext);
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -69,4 +69,4 @@ const Textarea2: React.FC<TextareaProps> = ({ name, ...rest }) => {
   );
 };
 
-export default Textarea2;
+export default Textarea;
