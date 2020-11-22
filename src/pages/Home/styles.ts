@@ -8,10 +8,6 @@ export const Container = styled.div`
     font-size: 36px;
     font-weight: normal;
   }
-
-  section {
-    grid-area: actions;
-  }
 `;
 
 export const Title = styled.div`
