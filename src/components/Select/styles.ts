@@ -6,7 +6,7 @@ export function useStyles(error: string | undefined) {
   const { colors } = useContext(ThemeContext);
 
   const customStyles = {
-    control: styles => ({
+    control: (styles, { isDisabled }) => ({
       ...styles,
       borderRadius: 4,
       padding: '2px 5px',
@@ -20,6 +20,8 @@ export function useStyles(error: string | undefined) {
       },
       borderColor: error !== undefined ? colors.red : colors.primary,
       boxShadow: 'none',
+      background: isDisabled ? 'transparent' : '#fff',
+      opacity: isDisabled ? 0.4 : 1,
     }),
     option: (styles, { isSelected }) => ({
       ...styles,

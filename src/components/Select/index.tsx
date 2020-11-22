@@ -9,9 +9,10 @@ import { useStyles } from './styles';
 
 interface SelectProps extends ReactSelectProps<OptionTypeBase> {
   name: string;
+  disabled?: boolean;
 }
 
-const Select: React.FC<SelectProps> = ({ name, ...rest }) => {
+const Select: React.FC<SelectProps> = ({ name, disabled, ...rest }) => {
   const selectRef = useRef(null);
 
   const { fieldName, defaultValue, registerField, error } = useField(name);
@@ -41,6 +42,7 @@ const Select: React.FC<SelectProps> = ({ name, ...rest }) => {
       classNamePrefix="react-select"
       styles={useStyles(error)}
       ref={selectRef}
+      isDisabled={disabled}
       {...rest}
     />
   );
