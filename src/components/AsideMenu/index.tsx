@@ -5,6 +5,7 @@ import {
   FaRegPlayCircle,
   FaRegCalendarPlus,
   FaUsers,
+  FaUserTag,
   FaArchive,
 } from 'react-icons/fa';
 import { ThemeContext } from 'styled-components';
@@ -54,6 +55,16 @@ const AsideMenu: React.FC = () => {
           <Animation>
             <FaUsers size={32} color={colors.white} />
             <span>Alunos</span>
+            <Ink />
+          </Animation>
+        </Link>
+      </Item>
+
+      <Item>
+        <Link to="/candidates">
+          <Animation>
+            <FaUserTag size={32} color={colors.white} />
+            <span>Candidatos</span>
             <Ink />
           </Animation>
         </Link>

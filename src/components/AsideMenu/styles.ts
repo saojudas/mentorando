@@ -6,11 +6,15 @@ export const Container = styled.div`
   box-shadow: inset 0 0 1em transparent,
     0 0 0.4em ${props => props.theme.colors.primary};
 
-  padding: 40px 20px;
+  padding: 36px 20px;
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+
+  position: fixed;
+
+  z-index: 80;
 `;
 
 export const Item = styled.div`
@@ -20,7 +24,7 @@ export const Item = styled.div`
   height: 58px;
 
   & + div {
-    margin-top: 40px;
+    margin-top: 36px;
   }
 
   &:hover div {
