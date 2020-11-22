@@ -8,6 +8,7 @@ import {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE,
+  SIGN_OUT,
 } from './constants';
 
 interface AuthState {
@@ -62,6 +63,12 @@ export default function auth(
       case SIGN_UP_FAILURE: {
         draft.loading = false;
         draft.error = true;
+        break;
+      }
+
+      case SIGN_OUT: {
+        draft.token = undefined;
+        draft.signed = false;
         break;
       }
 
