@@ -13,6 +13,7 @@ import Link from '../../components/Link';
 import Input from '../../components/Input';
 import Checkbox from '../../components/Checkbox';
 import Button from '../../components/Button';
+import Success from '../../components/Success';
 
 import landingImg from '../../assets/landing.png';
 import logoImg from '../../assets/logo.svg';
@@ -39,6 +40,7 @@ const SignUp: React.FC = () => {
 
   const dispatch = useDispatch();
 
+  const [isSuccess, setIsSuccess] = useState(false);
   const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
 
@@ -86,6 +88,8 @@ const SignUp: React.FC = () => {
         formRef.current?.setErrors({});
 
         dispatch(signUpRequest(data));
+
+        setIsSuccess(true);
       } catch (err) {
         const errors = getValidationErrors(err);
 
@@ -116,55 +120,75 @@ const SignUp: React.FC = () => {
         initialData={{ checkbox: ['is_student'] }}
       >
         <NewAccountContainer>
-          <h1>Cadastre-se</h1>
+          {isSuccess ? (
+            <>
+              <h1>Sucesso!</h1>
 
-          <p>
-            Crie sua conta gratuitamente e tenha acesso a todos os conteúdos
-          </p>
+              <p>Conta criada com sucesso.</p>
 
-          <Input name="username" placeholder="Defina um nome de usuário" />
+              <Success height={450} width={450} />
 
-          <Input name="name" placeholder="Seu nome completo" />
+              <Link to="/login" color={colors.primary} outline>
+                Entrar
+              </Link>
+            </>
+          ) : (
+            <>
+              <h1>Cadastre-se</h1>
 
-          <Input
-            name="email"
-            placeholder="Digite seu e-mail"
-            icon={FaMailBulk}
-          />
+              <p>
+                Crie sua conta gratuitamente e tenha acesso a todos os conteúdos
+              </p>
 
-          <Input name="university" placeholder="Instituição de ensino" />
+              <Input name="username" placeholder="Defina um nome de usuário" />
 
-          <Input name="registration" placeholder="Matrícula" />
+              <Input name="name" placeholder="Seu nome completo" />
 
-          <Input
-            name="password"
-            type={isShowPassword ? 'text' : 'password'}
-            icon={isShowPassword ? FaRegEye : FaRegEyeSlash}
-            placeholder="Digite sua senha"
-            iconClick={handleShowPassword}
-          />
+              <Input
+                name="email"
+                placeholder="Digite seu e-mail"
+                icon={FaMailBulk}
+              />
 
-          <Input
-            name="confirm_password"
-            type={isShowConfirmPassword ? 'text' : 'password'}
-            icon={isShowConfirmPassword ? FaRegEye : FaRegEyeSlash}
-            placeholder="Confirme sua senha"
-            iconClick={handleShowConfirmPassword}
-          />
+              <Input name="university" placeholder="Instituição de ensino" />
 
-          <UserTypeContainer>
-            <Checkbox name="is_student" options={radioOptions} type="radio" />
-          </UserTypeContainer>
+              <Input name="registration" placeholder="Matrícula" />
 
-          <ActionButons>
-            <Button type="submit" color={colors.primary}>
-              Cadastrar
-            </Button>
+              <Input
+                name="password"
+                type={isShowPassword ? 'text' : 'password'}
+                icon={isShowPassword ? FaRegEye : FaRegEyeSlash}
+                placeholder="Digite sua senha"
+                iconClick={handleShowPassword}
+              />
 
-            <Link to="/login" color={colors.blue}>
-              Login
-            </Link>
-          </ActionButons>
+              <Input
+                name="confirm_password"
+                type={isShowConfirmPassword ? 'text' : 'password'}
+                icon={isShowConfirmPassword ? FaRegEye : FaRegEyeSlash}
+                placeholder="Confirme sua senha"
+                iconClick={handleShowConfirmPassword}
+              />
+
+              <UserTypeContainer>
+                <Checkbox
+                  name="is_student"
+                  options={radioOptions}
+                  type="radio"
+                />
+              </UserTypeContainer>
+
+              <ActionButons>
+                <Button type="submit" color={colors.primary}>
+                  Cadastrar
+                </Button>
+
+                <Link to="/login" color={colors.blue}>
+                  Login
+                </Link>
+              </ActionButons>
+            </>
+          )}
         </NewAccountContainer>
       </Form>
     </Container>

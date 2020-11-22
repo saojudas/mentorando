@@ -3,7 +3,9 @@ import { shade, lighten, darken } from 'polished';
 
 interface ILinkProps {
   outline?: boolean;
+  amount?: number;
   color: string;
+  func?: 'lighten' | 'darken';
 }
 
 export const Container = styled.div<ILinkProps>`
@@ -34,7 +36,11 @@ export const Container = styled.div<ILinkProps>`
     &:hover {
       color: ${props => props.outline && lighten(0.2, props.color)};
       background: ${props =>
-        props.outline ? darken(0.8, props.color) : shade(0.2, props.color)};
+        props.outline && props.func
+          ? props.func === 'lighten'
+            ? lighten(props.amount || 0.2, props.color)
+            : darken(props.amount || 0.2, props.color)
+          : shade(0.2, props.color)};
     }
   }
 `;
