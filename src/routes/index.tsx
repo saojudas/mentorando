@@ -15,6 +15,11 @@ import NewReport from '../pages/NewReport';
 import Advisors from '../pages/Advisors';
 import Reports from '../pages/Reports';
 
+import NewCandidate from '../pages/NewCandidate';
+import Candidates from '../pages/Candidates';
+
+import Video from '../pages/Video';
+
 import history from '../services/history';
 
 const Routes: React.FC = () => (
@@ -30,8 +35,13 @@ const Routes: React.FC = () => (
       <Route path="/new-meet" component={NewMeet} isPrivate />
       <Route path="/new-report" component={NewReport} isPrivate />
 
-      <Route path="/advisors" component={Advisors} isPrivate />
+      <Route path="/students" component={Advisors} isPrivate />
       <Route path="/reports" component={Reports} isPrivate />
+
+      <Route path="/new-candidate" component={NewCandidate} isPrivate />
+      <Route path="/candidates" component={Candidates} isPrivate />
+
+      <Route path="/video" component={Video} isPrivate />
     </Switch>
   </Router>
 );
