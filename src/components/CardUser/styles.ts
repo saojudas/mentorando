@@ -13,6 +13,8 @@ export const Container = styled.div`
   box-shadow: inset 0 0 1em transparent,
     0 0 0.3em ${props => props.theme.colors.primary};
 
+  z-index: -1;
+
   svg {
     position: absolute;
     right: 6px;
