@@ -15,6 +15,10 @@ export const Container = styled.div`
   position: fixed;
 
   z-index: 80;
+
+  @media (max-height: 864px) {
+    padding: 20px;
+  }
 `;
 
 export const Item = styled.div`
@@ -25,6 +29,11 @@ export const Item = styled.div`
 
   & + div {
     margin-top: 36px;
+  }
+
+  @media (max-height: 864px) {
+    margin-top: 8px !important;
+    left: 4px;
   }
 
   &:hover div {
@@ -110,5 +119,11 @@ export const Animation = styled.div`
     visibility: hidden;
 
     transition: opacity 1s;
+  }
+
+  @media (max-height: 864px) {
+    width: 50px;
+    height: 50px;
+    padding-left: 9px;
   }
 `;
