@@ -7,13 +7,14 @@ import api from '../../../services/api';
 import history from '../../../services/history';
 
 import {
+  signInRequest,
   signInSuccess,
   signInFailure,
   signUpSuccess,
   signUpFailure,
 } from './actions';
 
-import { SIGN_IN_REQUEST, SIGN_UP_REQUEST } from './constants';
+import { SIGN_IN_REQUEST, SIGN_UP_REQUEST, SIGN_OUT } from './constants';
 
 export function* signIn({ payload }: AnyAction) {
   try {
@@ -71,6 +72,10 @@ export function* signUp({ payload }: AnyAction) {
     toast.success('Cadastro efetuado com sucesso!');
 
     yield put(signUpSuccess());
+
+    yield delay(3000);
+
+    yield put(signInRequest(email, password));
   } catch (err) {
     yield put(signUpFailure());
 
@@ -78,7 +83,14 @@ export function* signUp({ payload }: AnyAction) {
   }
 }
 
+export function signOut() {
+  toast.success('Até a próxima!...');
+
+  history.push('/');
+}
+
 export default all([
   takeLatest(SIGN_IN_REQUEST, signIn),
   takeLatest(SIGN_UP_REQUEST, signUp),
+  takeLatest(SIGN_OUT, signOut),
 ]);
