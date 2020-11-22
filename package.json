@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
+    "pre:start": "eslint --fix .",
+    "start": "eslint --fix . && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -30,6 +31,7 @@
     "react-datepicker": "^3.3.0",
     "react-dom": "^17.0.1",
     "react-icons": "^3.11.0",
+    "react-iframe": "^1.8.0",
     "react-ink": "^6.4.0",
     "react-lottie": "^1.2.3",
     "react-redux": "^7.2.2",
