@@ -127,10 +127,6 @@ const SignUp: React.FC = () => {
               <p>Conta criada com sucesso.</p>
 
               <Success height={450} width={450} />
-
-              <Link to="/login" color={colors.primary} outline>
-                Entrar
-              </Link>
             </>
           ) : (
             <>
