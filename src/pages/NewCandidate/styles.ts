@@ -30,6 +30,8 @@ export const ContentSection = styled.section`
 
   overflow-y: scroll;
 
+  margin-bottom: 60px;
+
   ::-webkit-scrollbar {
     width: 10px;
   }
@@ -51,14 +53,70 @@ export const ContentSection = styled.section`
 
 export const Content = styled.div`
   width: 100%;
-  align-items: center;
-  margin: 0 0 50px 0;
-  justify-content: center;
+
+  margin: 20px 0 50px 0;
   padding: 0 60px;
+
+  position: relative;
 
   h1 {
     text-align: center;
     font-weight: 500;
     font-size: 2.5em;
+
+    margin-bottom: 48px;
+  }
+
+  p {
+    color: ${props => props.theme.colors.black};
+    width: 64%;
+    font-size: 24px;
+
+    &:nth-of-type(1) {
+      position: absolute;
+    }
+
+    &:nth-of-type(2) {
+      position: absolute;
+      top: 560px;
+      right: 60px;
+
+      text-align: right;
+
+      width: 66% !important;
+    }
+
+    &:nth-of-type(3) {
+      position: absolute;
+      top: 1100px;
+
+      width: 66% !important;
+    }
+  }
+
+  img:nth-of-type(1) {
+    position: absolute;
+    top: 180px;
+    right: 60px;
+  }
+
+  img:nth-of-type(2) {
+    position: absolute;
+    top: 740px;
+  }
+
+  button {
+    position: absolute;
+    top: 1380px;
+
+    width: 350px;
+  }
+
+  div {
+    position: absolute;
+    top: 1380px;
+    left: 480px;
+
+    width: 350px;
   }
 `;
