@@ -11,12 +11,12 @@ import Routes from './routes';
 import GlobalStyle from './styles/global';
 
 import light from './styles/themes/light';
-// import dark from './styles/themes/dark';
+import dark from './styles/themes/dark';
 
 import { store, persistor } from './store';
 
 const App: React.FC = () => (
-  <ThemeProvider theme={light}>
+  <ThemeProvider theme={dark}>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <Routes />

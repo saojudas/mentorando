@@ -1,9 +1,10 @@
 import { useContext } from 'react';
 import { Styles } from 'react-select';
 import { ThemeContext } from 'styled-components';
+import { shade } from 'polished';
 
 export function useStyles(error: string | undefined) {
-  const { colors } = useContext(ThemeContext);
+  const { title, colors } = useContext(ThemeContext);
 
   const customStyles = {
     control: (styles, { isDisabled }) => ({
@@ -18,15 +19,24 @@ export function useStyles(error: string | undefined) {
         color: colors.primary,
         borderColor: colors.primary,
       },
+      color: title === 'light' ? colors.black : colors.white,
       borderColor: error !== undefined ? colors.red : colors.primary,
       boxShadow: 'none',
-      background: isDisabled ? 'transparent' : '#fff',
+      background: isDisabled
+        ? title === 'light'
+          ? '#fff'
+          : shade(0.2, colors.black)
+        : shade(0.2, colors.black),
       opacity: isDisabled ? 0.4 : 1,
+    }),
+    singleValue: styles => ({
+      ...styles,
+      color: title === 'light' ? colors.black : colors.white,
     }),
     option: (styles, { isSelected }) => ({
       ...styles,
       backgroundColor: isSelected && colors.primary,
-      color: colors.black,
+      color: isSelected ? colors.white : colors.black,
     }),
   } as Partial<Styles> | undefined;
 

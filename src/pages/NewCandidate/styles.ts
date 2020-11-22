@@ -7,8 +7,19 @@ export const Container = styled.div`
   flex-direction: column;
 
   h1 {
+    color: ${props =>
+      props.theme.title === 'light'
+        ? props.theme.colors.black
+        : props.theme.colors.white};
     font-size: 36px;
     font-weight: normal;
+  }
+
+  p {
+    color: ${props =>
+      props.theme.title === 'light'
+        ? props.theme.colors.black
+        : props.theme.colors.white};
   }
 `;
 
@@ -68,7 +79,6 @@ export const Content = styled.div`
   }
 
   p {
-    color: ${props => props.theme.colors.black};
     width: 64%;
     font-size: 24px;
 
@@ -88,7 +98,7 @@ export const Content = styled.div`
 
     &:nth-of-type(3) {
       position: absolute;
-      top: 1100px;
+      top: 1120px;
 
       width: 66% !important;
     }
@@ -96,25 +106,25 @@ export const Content = styled.div`
 
   img:nth-of-type(1) {
     position: absolute;
-    top: 180px;
+    top: 210px;
     right: 60px;
   }
 
   img:nth-of-type(2) {
     position: absolute;
-    top: 740px;
+    top: 790px;
   }
 
   button {
     position: absolute;
-    top: 1380px;
+    top: 1440px;
 
     width: 350px;
   }
 
   div {
     position: absolute;
-    top: 1380px;
+    top: 1440px;
     left: 480px;
 
     width: 350px;

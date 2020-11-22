@@ -7,6 +7,10 @@ export const Container = styled.header`
   flex-direction: column;
 
   h1 {
+    color: ${props =>
+      props.theme.title === 'light'
+        ? props.theme.colors.black
+        : props.theme.colors.white};
     font-size: 36px;
     font-weight: normal;
   }

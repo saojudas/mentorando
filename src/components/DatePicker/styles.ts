@@ -1,5 +1,8 @@
 import styled, { css } from 'styled-components';
+import { shade } from 'polished';
+
 import 'react-datepicker/dist/react-datepicker.css';
+
 import Tooltip from '../Tooltip';
 
 interface ContainerProps {
@@ -9,7 +12,10 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  background: ${props => props.theme.colors.white};
+  background: ${props =>
+    props.theme.title === 'light'
+      ? props.theme.colors.white
+      : shade(0.2, props.theme.colors.black)};
   border-radius: 4px;
   border: 2px solid ${props => props.theme.colors.primaryLighter};
   padding: 8px 16px;

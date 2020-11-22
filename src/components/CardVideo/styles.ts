@@ -35,10 +35,7 @@ export const CardInfo = styled.div`
 
   padding: 4px;
 
-  background: ${props =>
-    props.theme.title === 'light'
-      ? props.theme.colors.primaryLighter
-      : props.theme.colors.white};
+  background: ${props => props.theme.colors.primaryLighter};
 
   border-top: 1px solid ${props => props.theme.colors.primaryLight};
   border-bottom-left-radius: 7px;

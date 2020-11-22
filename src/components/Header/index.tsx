@@ -53,7 +53,7 @@ const Header: React.FC = () => {
         <img src={userImg} alt={profile?.username || ''} />
         <Actions>
           <li>
-            <Link to="/">
+            <Link to="/profile">
               <Ink />
               <FaUserCog size={16} color={colors.black} />
               Meu perfil

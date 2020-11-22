@@ -7,6 +7,10 @@ export const Container = styled.div`
   flex-direction: column;
 
   h1 {
+    color: ${props =>
+      props.theme.title === 'light'
+        ? props.theme.colors.black
+        : props.theme.colors.white};
     font-size: 36px;
     font-weight: normal;
   }
@@ -122,7 +126,8 @@ export const Item = styled.div<ItemProps>`
       height: 32px;
       width: 32px;
 
-      background-color: #eee;
+      background-color: ${props =>
+        props.theme.title === 'light' ? '#eee' : props.theme.colors.black};
 
       border: 1px solid ${props => props.theme.colors.primaryLight};
       border-radius: 4px;

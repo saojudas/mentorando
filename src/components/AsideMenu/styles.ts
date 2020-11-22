@@ -104,10 +104,7 @@ export const Animation = styled.div`
 
     max-width: 100px;
 
-    color: ${props =>
-      props.theme.title === 'light'
-        ? props.theme.colors.white
-        : props.theme.colors.black};
+    color: ${props => props.theme.colors.white};
     font-size: 16px;
 
     user-select: none;

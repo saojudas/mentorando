@@ -7,8 +7,19 @@ export const Container = styled.div`
   flex-direction: column;
 
   h1 {
+    color: ${props =>
+      props.theme.title === 'light'
+        ? props.theme.colors.black
+        : props.theme.colors.white};
     font-size: 36px;
     font-weight: normal;
+  }
+
+  p {
+    color: ${props =>
+      props.theme.title === 'light'
+        ? props.theme.colors.black
+        : props.theme.colors.white};
   }
 `;
 
@@ -113,7 +124,6 @@ export const Description = styled.div`
   }
   p {
     font-size: 1.2em;
-    color: ${props => props.theme.colors.black};
 
     margin-top: 16px;
   }

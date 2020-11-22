@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { shade } from 'polished';
 
 import Tooltip from '../Tooltip';
 
@@ -10,12 +11,18 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  background: ${props => props.theme.colors.white};
+  background: ${props =>
+    props.theme.title === 'light'
+      ? props.theme.colors.white
+      : shade(0.2, props.theme.colors.black)};
   border-radius: 4px;
   border: 2px solid ${props => props.theme.colors.primaryLighter};
   padding: 8px 16px;
   width: 100%;
-  color: ${props => props.theme.colors.grayLight};
+  color: ${props =>
+    props.theme.title === 'light'
+      ? props.theme.colors.grayLight
+      : props.theme.colors.white};
 
   display: flex;
   align-items: center;
@@ -61,10 +68,16 @@ export const Container = styled.div<ContainerProps>`
     background: transparent;
     flex: 1;
     border: 0;
-    color: ${props => props.theme.colors.black};
+    color: ${props =>
+      props.theme.title === 'light'
+        ? props.theme.colors.black
+        : props.theme.colors.white};
 
     &::placeholder {
-      color: ${props => props.theme.colors.grayLight};
+      color: ${props =>
+        props.theme.title === 'light'
+          ? props.theme.colors.grayLight
+          : shade(0.2, props.theme.colors.white)};
     }
   }
 
