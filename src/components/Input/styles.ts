@@ -6,6 +6,7 @@ interface ContainerProps {
   isFocused: boolean;
   isFilled: boolean;
   isErrored: boolean;
+  disabled?: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -21,6 +22,12 @@ export const Container = styled.div<ContainerProps>`
   justify-content: space-between;
 
   height: 46px;
+
+  ${props =>
+    props.disabled &&
+    css`
+      opacity: 0.6;
+    `}
 
   & + div {
     margin-top: 32px;

@@ -24,6 +24,7 @@ const Input: React.FC<InputProps> = ({
   name,
   icon: Icon,
   iconClick,
+  disabled,
   ...rest
 }) => {
   const { colors } = useContext(ThemeContext);
@@ -54,7 +55,12 @@ const Input: React.FC<InputProps> = ({
   }, [fieldName, registerField]);
 
   return (
-    <Container isErrored={!!error} isFocused={isFocused} isFilled={isFilled}>
+    <Container
+      isErrored={!!error}
+      isFocused={isFocused}
+      isFilled={isFilled}
+      disabled={disabled}
+    >
       {error && (
         <Error title={error}>
           <FaInfoCircle color={colors.red} size={20} />
