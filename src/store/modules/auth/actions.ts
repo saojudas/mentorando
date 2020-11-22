@@ -5,6 +5,7 @@ import {
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE,
+  SIGN_OUT,
 } from './constants';
 
 import { User } from './interfaces';
@@ -31,4 +32,8 @@ export function signUpSuccess() {
 
 export function signUpFailure() {
   return { type: SIGN_UP_FAILURE };
+}
+
+export function signOut() {
+  return { type: SIGN_OUT };
 }
