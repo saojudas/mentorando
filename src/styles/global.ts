@@ -19,6 +19,8 @@ export default createGlobalStyle`
   body {
     -webkit-font-smoothing: antialiased !important;
     background: ${props => props.theme.colors.background};
+
+    overflow-y: hidden;
   }
 
   body, input, textarea, button {
