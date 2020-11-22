@@ -18,6 +18,10 @@ export const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-height: 864px) {
+    margin-bottom: 16px;
+  }
 `;
 
 export const ContentSection = styled.section`
