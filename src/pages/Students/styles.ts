@@ -72,6 +72,8 @@ export const Users = styled.div`
   row-gap: 36px;
   justify-items: center;
 
+  z-index: -1;
+
   a {
     text-decoration: none !important;
     color: inherit !important;
