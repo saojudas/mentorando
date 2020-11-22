@@ -7,6 +7,11 @@ export const Container = styled.div`
   border-radius: 8px;
   box-shadow: inset 0 0 1em transparent,
     0 0 0.4em ${props => props.theme.colors.primary};
+
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 `;
 
 export const Thumbnail = styled.div`
@@ -62,8 +67,6 @@ export const CardInfo = styled.div`
   }
 
   > svg {
-    /* margin-top: 4px; */
-
     cursor: pointer;
   }
 `;

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FaEllipsisV } from 'react-icons/fa';
 import { ThemeContext } from 'styled-components';
 
@@ -17,16 +18,18 @@ const CardVideo: React.FC<CardVideoProps> = ({ title, thumbnail, preview }) => {
 
   return (
     <Container>
-      <Thumbnail
-        onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
-      >
-        {!isHover ? (
-          <img src={thumbnail} alt="Thumbnail" />
-        ) : (
-          <img src={preview} alt="Preview" />
-        )}
-      </Thumbnail>
+      <Link to="/video">
+        <Thumbnail
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
+        >
+          {!isHover ? (
+            <img src={thumbnail} alt="Thumbnail" />
+          ) : (
+            <img src={preview} alt="Preview" />
+          )}
+        </Thumbnail>
+      </Link>
 
       <CardInfo>
         <div>
