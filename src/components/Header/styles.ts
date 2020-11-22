@@ -116,7 +116,7 @@ export const Actions = styled.ul`
 
   transition: all 200ms;
 
-  z-index: 1;
+  z-index: 10;
 
   li a,
   li button {
