@@ -17,6 +17,8 @@ export const Container = styled.header<ColorProps>`
   align-items: center;
   justify-content: space-between;
 
+  position: fixed;
+
   > div:nth-of-type(2) {
     position: relative;
     height: 100%;
