@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'styled-components';
@@ -6,8 +7,6 @@ import { ThemeProvider } from 'styled-components';
 import './config/ReactotronConfig';
 
 import Routes from './routes';
-
-// import Header from './components/Header';
 
 import GlobalStyle from './styles/global';
 
@@ -20,9 +19,9 @@ const App: React.FC = () => (
   <ThemeProvider theme={light}>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        {/* <Header /> */}
         <Routes />
         <GlobalStyle />
+        <ToastContainer autoClose={3000} />
       </PersistGate>
     </Provider>
   </ThemeProvider>

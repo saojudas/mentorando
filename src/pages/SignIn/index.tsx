@@ -120,7 +120,12 @@ const SignIn: React.FC = () => {
           />
 
           <RememberMeContainer>
-            <Checkbox name="is_student" label="Lembrar-me" />
+            <Checkbox
+              name="is_student"
+              options={[
+                { id: 'is_student', value: 'true', label: 'Lembrar-me' },
+              ]}
+            />
 
             <ReactLink to="/forgot-password">Esqueçeu sua senha?</ReactLink>
           </RememberMeContainer>

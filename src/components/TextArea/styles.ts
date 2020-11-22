@@ -16,7 +16,7 @@ export const Container = styled.div<ContainerProps>`
   width: 100%;
   color: ${props => props.theme.colors.grayLight};
   position: relative;
-  margin-bottom: 24px;
+  margin-bottom: 48px;
 
   display: flex;
   align-items: center;
@@ -52,7 +52,7 @@ export const Container = styled.div<ContainerProps>`
       color: ${props.theme.colors.primary};
     `}
 
-    textarea {
+  textarea {
     background: transparent;
     flex: 1;
     border: 0;

@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 
-export const Container = styled.label`
+export const Container = styled.div`
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`;
+
+export const Label = styled.label`
   display: block;
   position: relative;
 

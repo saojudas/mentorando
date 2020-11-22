@@ -8,11 +8,20 @@ interface LinkProps {
   to: string;
   color: string;
   outline?: boolean;
+  amount?: number;
+  func?: 'lighten' | 'darken';
 }
 
-const Link: React.FC<LinkProps> = ({ to, color, outline, children }) => {
+const Link: React.FC<LinkProps> = ({
+  to,
+  color,
+  outline,
+  amount,
+  func,
+  children,
+}) => {
   return (
-    <Container color={color} outline={outline}>
+    <Container color={color} outline={outline} amount={amount} func={func}>
       <ReactLink to={to}>
         {children}
         <Ink />

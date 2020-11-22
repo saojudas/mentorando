@@ -26,7 +26,13 @@ const Landing: React.FC = () => {
           Inscrever-se
         </Link>
 
-        <Link to="/login" color={colors.white} outline>
+        <Link
+          to="/login"
+          color={colors.white}
+          outline
+          func="darken"
+          amount={0.8}
+        >
           Fazer login
         </Link>
       </ActionButtons>

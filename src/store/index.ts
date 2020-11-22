@@ -21,4 +21,9 @@ const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSaga);
 
+export interface IRootState {
+  auth: any;
+  user: any;
+}
+
 export { store, persistor };

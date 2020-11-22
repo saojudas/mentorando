@@ -20,11 +20,13 @@ export interface Student {
 }
 
 export interface User {
-  id: string;
+  id?: string;
   username: string;
+  name: string;
   email: string;
   created_at: Date;
   updated_at: Date;
   teacher: Teacher;
   student: Student;
+  is_student?: Array<string>;
 }

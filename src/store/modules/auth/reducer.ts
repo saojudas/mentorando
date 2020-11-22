@@ -1,7 +1,15 @@
 import produce from 'immer';
 import { AnyAction } from 'redux';
 
-import { SIGN_IN_REQUEST, SIGN_IN_SUCCESS, SIGN_IN_FAILURE } from './constants';
+import {
+  SIGN_IN_REQUEST,
+  SIGN_IN_SUCCESS,
+  SIGN_IN_FAILURE,
+  SIGN_UP_REQUEST,
+  SIGN_UP_SUCCESS,
+  SIGN_UP_FAILURE,
+  SIGN_OUT,
+} from './constants';
 
 interface AuthState {
   token: string | undefined;
@@ -39,6 +47,28 @@ export default function auth(
         draft.token = undefined;
         draft.signed = false;
         draft.loading = false;
+        break;
+      }
+
+      case SIGN_UP_REQUEST: {
+        draft.loading = true;
+        break;
+      }
+
+      case SIGN_UP_SUCCESS: {
+        draft.loading = false;
+        break;
+      }
+
+      case SIGN_UP_FAILURE: {
+        draft.loading = false;
+        draft.error = true;
+        break;
+      }
+
+      case SIGN_OUT: {
+        draft.token = undefined;
+        draft.signed = false;
         break;
       }
 

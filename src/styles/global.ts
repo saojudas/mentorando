@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 export default createGlobalStyle`
   * {
     margin: 0;
@@ -17,6 +19,8 @@ export default createGlobalStyle`
   body {
     -webkit-font-smoothing: antialiased !important;
     background: ${props => props.theme.colors.background};
+
+    overflow-y: hidden;
   }
 
   body, input, textarea, button {
