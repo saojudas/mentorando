@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.div`
@@ -23,6 +23,7 @@ export const Title = styled.div`
 export const ContentSection = styled.section`
   width: 100%;
   height: 100%;
+  margin-top: 32px;
 
   display: flex;
   align-items: flex-start;
@@ -49,15 +50,77 @@ export const ContentSection = styled.section`
   }
 `;
 
-export const Content = styled.div`
+interface ContentProps {
+  isTheater?: boolean;
+}
+
+export const Content = styled.div<ContentProps>`
   width: 100%;
 
-  margin: 0 0 50px 120px;
+  ${props =>
+    props.isTheater
+      ? css`
+          margin: 0 0 50px 120px;
+        `
+      : css`
+          margin: 0 0 50px 0px;
+        `}
+
   padding: 0 60px;
 
   h1 {
-    text-align: center;
-    font-weight: 500;
-    font-size: 2.5em;
+    font-weight: 600;
+    font-size: 2.2em;
   }
+`;
+
+export const FrameVideo = styled.div`
+  position: relative;
+
+  iframe {
+    border: 0px !important;
+  }
+
+  &:hover button {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  button {
+    position: absolute;
+    right: 0;
+
+    background-color: ${props => props.theme.colors.primary};
+
+    padding: 8px 16px;
+
+    color: ${props => props.theme.colors.white};
+    font-weight: bold;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 500ms;
+  }
+`;
+
+export const Description = styled.div`
+  margin-top: 32px;
+
+  h3 {
+    font-size: 1.8em;
+    color: ${props => props.theme.colors.grayDark};
+  }
+  p {
+    font-size: 1.2em;
+    color: ${props => props.theme.colors.black};
+
+    margin-top: 16px;
+  }
+`;
+
+export const Tags = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 32px;
 `;
