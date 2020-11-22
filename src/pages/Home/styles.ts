@@ -30,7 +30,12 @@ export const ContentSection = styled.section`
 
 export const Videos = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 48px;
   justify-items: center;
+
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
 `;
