@@ -4,7 +4,7 @@ interface ColorProps {
   color: string;
 }
 
-export const Container = styled.header<ColorProps>`
+export const Container = styled.div<ColorProps>`
   background: ${props => props.color};
   width: 100%;
   align-items: center;
@@ -19,7 +19,7 @@ export const Container = styled.header<ColorProps>`
   }
 `;
 
-export const InputsContainer = styled.div<ColorProps>`
+export const Item = styled.div<ColorProps>`
   span {
     color: ${props => props.color};
     font-weight: bold;

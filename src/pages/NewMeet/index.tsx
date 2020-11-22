@@ -6,19 +6,21 @@ import * as Yup from 'yup';
 
 import Input from '../../components/Input';
 import Select from '../../components/Select';
+import Button from '../../components/Button';
 import DatePicker from '../../components/DatePicker';
+
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import {
   ActionButons,
   Container,
   DateTimeInputsContainer,
-  InputsContainer,
+  Item,
 } from './styles';
-import Button from '../../components/Button';
 
 const NewMeet: React.FC = () => {
   const { colors } = useContext(ThemeContext);
+
   const formRef = useRef<FormHandles>(null);
 
   const handleSubmit = useCallback(async (data: object) => {
@@ -49,36 +51,41 @@ const NewMeet: React.FC = () => {
       <h1>Marcar uma nova reunião</h1>
 
       <Form ref={formRef} onSubmit={handleSubmit}>
-        <InputsContainer color={colors.primary}>
+        <Item color={colors.primary}>
           <span>Título</span>
+
           <Input name="title" placeholder="Título da reunião" />
-        </InputsContainer>
+        </Item>
 
-        <InputsContainer color={colors.primary}>
+        <Item color={colors.primary}>
           <span>Link do encontro</span>
-          <Input name="meet" placeholder="https://" />
-        </InputsContainer>
 
-        <InputsContainer color={colors.primary}>
+          <Input name="meet" placeholder="https://" />
+        </Item>
+
+        <Item color={colors.primary}>
           <span>Integrantes da reunião</span>
+
           <Select
             name="members"
             placeholder="Selecione os integrantes que participarão da reunião."
           />
-        </InputsContainer>
+        </Item>
 
         <DateTimeInputsContainer>
-          <InputsContainer color={colors.primary}>
+          <Item color={colors.primary}>
             <span>Data do encontro</span>
+
             <DatePicker
               name="date_meet"
               placeholderText="01/01/2020"
               dateFormat="dd/MM/yyyy"
             />
-          </InputsContainer>
+          </Item>
 
-          <InputsContainer color={colors.primary}>
+          <Item color={colors.primary}>
             <span>Horário de Inicio</span>
+
             <DatePicker
               name="start_hour"
               placeholderText="20:00"
@@ -89,10 +96,11 @@ const NewMeet: React.FC = () => {
               timeFormat="HH:mm"
               dateFormat="HH:mm"
             />
-          </InputsContainer>
+          </Item>
 
-          <InputsContainer color={colors.primary}>
+          <Item color={colors.primary}>
             <span>horário de Fim</span>
+
             <DatePicker
               name="end_hour"
               placeholderText="21:00"
@@ -104,7 +112,7 @@ const NewMeet: React.FC = () => {
               dateFormat="HH:mm"
               inputName="end_hour"
             />
-          </InputsContainer>
+          </Item>
         </DateTimeInputsContainer>
 
         <ActionButons>
