@@ -16,7 +16,7 @@ import dark from './styles/themes/dark';
 import { store, persistor } from './store';
 
 const App: React.FC = () => (
-  <ThemeProvider theme={dark}>
+  <ThemeProvider theme={light}>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <Routes />
