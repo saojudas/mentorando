@@ -105,7 +105,8 @@ export const IconContainer = styled.div`
   justify-content: center;
 
   &:hover {
-    background: #eee;
+    background: ${props =>
+      props.theme.title === 'light' ? '#eee' : props.theme.colors.primary};
   }
 `;
 

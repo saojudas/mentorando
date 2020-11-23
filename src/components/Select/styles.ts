@@ -24,9 +24,9 @@ export function useStyles(error: string | undefined) {
       boxShadow: 'none',
       background: isDisabled
         ? title === 'light'
-          ? '#fff'
+          ? colors.white
           : shade(0.2, colors.black)
-        : shade(0.2, colors.black),
+        : colors.white,
       opacity: isDisabled ? 0.4 : 1,
     }),
     singleValue: styles => ({

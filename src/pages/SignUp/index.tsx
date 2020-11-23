@@ -179,7 +179,7 @@ const SignUp: React.FC = () => {
                   Cadastrar
                 </Button>
 
-                <Link to="/login" color={colors.blue}>
+                <Link to="/login" color={colors.blue} outline>
                   Login
                 </Link>
               </ActionButons>

@@ -23,7 +23,7 @@ import {
 } from './styles';
 
 const NewMeet: React.FC = () => {
-  const { colors } = useContext(ThemeContext);
+  const { title, colors } = useContext(ThemeContext);
 
   const formRef = useRef<FormHandles>(null);
 
@@ -127,11 +127,17 @@ const NewMeet: React.FC = () => {
             </DateTimeInputsContainer>
 
             <ActionButons>
-              <Button type="submit" color={colors.orange}>
+              <Button
+                type="submit"
+                color={title === 'light' ? colors.orange : colors.secondary}
+              >
                 Cadastrar
               </Button>
 
-              <Button color={colors.orange} outline>
+              <Button
+                color={title === 'light' ? colors.orange : colors.secondary}
+                outline
+              >
                 Cancelar
               </Button>
             </ActionButons>

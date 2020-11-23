@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const Container = styled.div`
   width: 100%;
@@ -20,6 +21,11 @@ export const Label = styled.label`
   -moz-user-select: none;
   -ms-user-select: none;
 
+  color: ${props =>
+    props.theme.title === 'light'
+      ? props.theme.colors.black
+      : props.theme.colors.white};
+
   cursor: pointer;
 
   input {
@@ -39,7 +45,10 @@ export const Label = styled.label`
     width: 18px;
 
     border-radius: 6px;
-    background-color: #eee;
+    background-color: ${props =>
+      props.theme.title === 'light'
+        ? '#eee'
+        : shade(0.2, props.theme.colors.black)};
     border: 1px solid ${props => props.theme.colors.primary};
   }
 

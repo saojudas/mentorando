@@ -135,7 +135,7 @@ const SignIn: React.FC = () => {
               Entrar
             </Button>
 
-            <Link to="/register" color={colors.blue}>
+            <Link to="/register" color={colors.blue} outline>
               Cadastrar
             </Link>
           </ActionButons>

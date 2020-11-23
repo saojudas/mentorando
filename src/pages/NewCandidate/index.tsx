@@ -16,7 +16,7 @@ import studentsImg2 from '../../assets/students2.svg';
 import { Container, ContentSection, Content } from './styles';
 
 const NewCandidate: React.FC = () => {
-  const { colors } = useContext(ThemeContext);
+  const { title, colors } = useContext(ThemeContext);
 
   const profile = useSelector((state: IRootState) => state.user.profile);
 
@@ -61,11 +61,18 @@ const NewCandidate: React.FC = () => {
               pulvinar sit amet metus in scelerisque.
             </p>
 
-            <Button type="submit" color={colors.primary}>
+            <Button
+              type="submit"
+              color={title === 'light' ? colors.orange : colors.secondary}
+            >
               Candidatar-se
             </Button>
 
-            <Link to="/login" color={colors.primary} outline>
+            <Link
+              to="/login"
+              color={title === 'light' ? colors.orange : colors.secondary}
+              outline
+            >
               Voltar
             </Link>
           </Form>

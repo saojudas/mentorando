@@ -73,14 +73,29 @@ export const NewAccountContainer = styled.div`
     font-size: 48px;
   }
 
+  p {
+    color: ${props =>
+      props.theme.title === 'light'
+        ? props.theme.colors.black
+        : props.theme.colors.white};
+  }
+
   > span:nth-of-type(1) {
-    color: ${props => props.theme.colors.black};
+    color: ${props =>
+      props.theme.title === 'light'
+        ? props.theme.colors.black
+        : props.theme.colors.white};
     font-weight: normal;
     font-size: 16px;
     margin-top: 32px;
   }
 
   > span:nth-of-type(2) {
+    color: ${props =>
+      props.theme.title === 'light'
+        ? props.theme.colors.black
+        : props.theme.colors.white};
+
     margin: 50px 0;
   }
 

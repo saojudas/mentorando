@@ -19,6 +19,8 @@ export const Container = styled.header<ColorProps>`
 
   position: fixed;
 
+  z-index: 100;
+
   > div:nth-of-type(2) {
     position: relative;
     height: 100%;
@@ -114,9 +116,7 @@ export const Actions = styled.ul`
 
   visibility: hidden;
 
-  transition: all 200ms;
-
-  z-index: 10;
+  transition: all 100ms;
 
   li a,
   li button {

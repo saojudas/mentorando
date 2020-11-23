@@ -23,7 +23,7 @@ import {
 } from './styles';
 
 const NewVideo: React.FC = () => {
-  const { colors } = useContext(ThemeContext);
+  const { title, colors } = useContext(ThemeContext);
 
   const formRef = useRef<FormHandles>(null);
 
@@ -134,11 +134,18 @@ const NewVideo: React.FC = () => {
             </Item>
 
             <ActionButons>
-              <Button type="submit" color={colors.orange}>
+              <Button
+                type="submit"
+                color={title === 'light' ? colors.orange : colors.secondary}
+              >
                 Cadastrar
               </Button>
 
-              <Link to="/home" color={colors.orange} outline>
+              <Link
+                to="/home"
+                color={title === 'light' ? colors.orange : colors.secondary}
+                outline
+              >
                 Cancelar
               </Link>
             </ActionButons>
