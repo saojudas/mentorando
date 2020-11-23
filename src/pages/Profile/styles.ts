@@ -55,14 +55,58 @@ export const ContentSection = styled.section`
 
 export const Content = styled.div`
   width: 100%;
-  align-items: center;
-  margin: 0 0 50px 0;
-  justify-content: center;
+
+  margin: 0 0 50px 120px;
   padding: 0 60px;
 
   h1 {
     text-align: center;
     font-weight: 500;
     font-size: 2.5em;
+  }
+`;
+
+export const UserPhoto = styled.div`
+  height: 200px;
+  display: flex;
+  justify-content: center;
+
+  a {
+    position: relative;
+  }
+
+  img {
+    height: 200px;
+    width: 200px;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+    margin-bottom: 9px;
+  }
+  svg {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+  }
+`;
+
+export const Item = styled.div`
+  span {
+    color: ${props => props.theme.colors.primary};
+    font-weight: bold;
+    display: block;
+    margin-top: 25px;
+  }
+`;
+
+export const ActionButons = styled.div`
+  width: 100%;
+  margin-top: 50px;
+
+  display: flex;
+
+  button + button {
+    margin-left: 32px;
   }
 `;
