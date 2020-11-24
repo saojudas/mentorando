@@ -53,7 +53,7 @@ export const ContentSection = styled.section`
 `;
 
 export const Videos = styled.div`
-  margin-left: 140px;
+  margin: 0 0 60px 140px;
 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
