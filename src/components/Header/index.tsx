@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import { ThemeContext } from 'styled-components';
 import { FaUserCog, FaRegPlayCircle, FaSignOutAlt } from 'react-icons/fa';
 import Ink from 'react-ink';
+import Switch from 'react-switch';
 
+import HandlesContext from '../../context/handles';
 import { signOut } from '../../store/modules/auth/actions';
 
 import logo from '../../assets/logo.svg';
@@ -12,10 +14,18 @@ import userImg from '../../assets/jhon.jpg';
 
 import { IRootState } from '../../store';
 
-import { Container, Logo, NavigationBar, Profile, Actions } from './styles';
+import {
+  Container,
+  Logo,
+  NavigationBar,
+  ThemeSwitcher,
+  Profile,
+  Actions,
+} from './styles';
 
 const Header: React.FC = () => {
-  const { colors } = useContext(ThemeContext);
+  const { title, colors } = useContext(ThemeContext);
+  const { toggleTheme } = useContext(HandlesContext);
 
   const dispatch = useDispatch();
 
@@ -26,14 +36,14 @@ const Header: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <Container color={colors.primary}>
+    <Container>
       <Logo>
         <Link to="/home">
           <img src={logo} alt="Mentorando" />
         </Link>
       </Logo>
 
-      <NavigationBar color={colors.white}>
+      <NavigationBar>
         <ul>
           <li>
             <Link to="/">ASSISTIR VÍDEOS</Link>
@@ -47,10 +57,25 @@ const Header: React.FC = () => {
         </ul>
       </NavigationBar>
 
-      <Profile color={colors.white}>
+      <ThemeSwitcher>
+        <Switch
+          onChange={toggleTheme}
+          checked={title === 'dark'}
+          checkedIcon={false}
+          uncheckedIcon={false}
+          height={10}
+          width={40}
+          handleDiameter={20}
+          offColor={colors.black}
+          onColor={colors.secondary}
+        />
+      </ThemeSwitcher>
+
+      <Profile>
         <span>{profile?.username}</span>
 
         <img src={userImg} alt={profile?.username || ''} />
+
         <Actions>
           <li>
             <Link to="/profile">

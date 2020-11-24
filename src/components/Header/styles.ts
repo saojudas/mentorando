@@ -1,12 +1,8 @@
 import styled from 'styled-components';
 import { lighten } from 'polished';
 
-interface ColorProps {
-  color: string;
-}
-
-export const Container = styled.header<ColorProps>`
-  background: ${props => props.color};
+export const Container = styled.header`
+  background: ${props => props.theme.colors.primary};
 
   height: 80px;
   width: 100%;
@@ -41,7 +37,7 @@ export const Logo = styled.div`
   }
 `;
 
-export const NavigationBar = styled.nav<ColorProps>`
+export const NavigationBar = styled.nav`
   ul {
     display: flex;
 
@@ -49,7 +45,7 @@ export const NavigationBar = styled.nav<ColorProps>`
       margin: 0 15px;
 
       a {
-        color: ${props => props.color};
+        color: ${props => props.theme.colors.white};
         font-size: 18px;
         font-weight: bold;
 
@@ -62,7 +58,16 @@ export const NavigationBar = styled.nav<ColorProps>`
   }
 `;
 
-export const Profile = styled.div<ColorProps>`
+export const ThemeSwitcher = styled.section`
+  display: flex;
+  align-items: center;
+
+  div {
+    height: 22px;
+  }
+`;
+
+export const Profile = styled.div`
   display: flex;
   align-items: center;
 
@@ -71,7 +76,7 @@ export const Profile = styled.div<ColorProps>`
   }
 
   span {
-    color: ${props => props.color};
+    color: ${props => props.theme.colors.white};
     font-size: 1.3em;
     font-weight: bold;
     text-align: right;
@@ -86,7 +91,7 @@ export const Profile = styled.div<ColorProps>`
     width: 45px;
     height: 45px;
 
-    border: 1px solid ${props => props.color};
+    border: 1px solid ${props => props.theme.colors.white};
     border-radius: 50%;
 
     object-fit: contain;

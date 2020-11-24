@@ -26,7 +26,9 @@ export function useStyles(error: string | undefined) {
         ? title === 'light'
           ? colors.white
           : shade(0.2, colors.black)
-        : colors.white,
+        : title === 'light'
+        ? colors.white
+        : shade(0.2, colors.black),
       opacity: isDisabled ? 0.4 : 1,
     }),
     singleValue: styles => ({

@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-interface ColorProps {
-  color: string;
-}
-
 export const Container = styled.div`
   width: 180px;
   position: relative;
@@ -42,7 +38,7 @@ export const CardBody = styled.div`
   }
 `;
 
-export const TagArea = styled.div<ColorProps>`
+export const TagArea = styled.div`
   width: fit-content;
   padding: 0 10px;
 
@@ -50,7 +46,7 @@ export const TagArea = styled.div<ColorProps>`
 
   border-radius: 8px;
   border: 1px solid ${props => props.theme.colors.secondary};
-  background-color: ${props => props.color};
+  background-color: ${props => props.theme.colors.secondary};
 
   display: flex;
   align-items: center;
@@ -62,14 +58,14 @@ export const TagArea = styled.div<ColorProps>`
   }
 `;
 
-export const CardInfo = styled.div<ColorProps>`
+export const CardInfo = styled.div`
   height: 38px;
 
   text-align: center;
 
   border-radius: 0 0 7px 7px;
   border-top: 1px solid ${props => props.theme.colors.primaryLight};
-  background-color: ${props => props.color};
+  background-color: ${props => props.theme.colors.primaryLight};
 
   display: flex;
   align-items: center;

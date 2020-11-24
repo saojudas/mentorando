@@ -65,7 +65,7 @@ export const ContentSection = styled.section`
 export const Content = styled.div`
   width: 100%;
 
-  margin: 20px 0 50px 0;
+  margin: 20px 0 150px 0;
   padding: 0 60px;
 
   position: relative;
