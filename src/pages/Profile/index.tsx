@@ -1,10 +1,11 @@
 import React, { useCallback, useRef, useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { ThemeContext } from 'styled-components';
 
 import { Form } from '@unform/web';
-import { FormHandles } from '@unform/core';
+import { FormHandles, Scope } from '@unform/core';
 
 import AsideMenu from '../../components/AsideMenu';
 import Select from '../../components/Select';
@@ -23,10 +24,11 @@ import {
 import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import Button from '../../components/Button';
+import { IRootState } from '../../store';
 
 const Profile: React.FC = () => {
   const { colors, title } = useContext(ThemeContext);
-
+  const profile = useSelector((state: IRootState) => state.user.profile);
   const formRef = useRef<FormHandles>(null);
 
   const handleSubmit = useCallback(() => {
@@ -34,11 +36,11 @@ const Profile: React.FC = () => {
   }, []);
 
   const options = [
-    { value: 'tecnology', label: 'Tecnologia' },
     { value: 'lawyer', label: 'Direito' },
+    { value: 'tecnology', label: 'Tecnologia' },
     { value: 'biology', label: 'Biologia' },
   ];
-
+  console.log(profile);
   return (
     <Container>
       <Title>
@@ -48,7 +50,7 @@ const Profile: React.FC = () => {
       <ContentSection>
         <AsideMenu />
         <Content>
-          <Form ref={formRef} onSubmit={handleSubmit}>
+          <Form ref={formRef} initialData={profile} onSubmit={handleSubmit}>
             <UserPhoto>
               <img
                 src="https://avatars3.githubusercontent.com/u/39928763?s=460&u=4f646846555a7597d42a9685c053df562a57a779&v=4"
@@ -66,13 +68,19 @@ const Profile: React.FC = () => {
 
             <Item>
               <span>Nome Completo:</span>
-              <Input name="name" placeholder="Digite seu nome completo " />
+              <Scope path={`${profile.teacher ? 'teacher' : 'student'}`}>
+                <Input name="name" placeholder="Digite seu nome completo " />
+              </Scope>
             </Item>
 
             <Item>
-              <span>Tags</span>
+              <span>Área</span>
 
-              <Select name="area" placeholder="Tecnologia" options={options} />
+              <Select
+                name="area"
+                placeholder="Selecione uma área"
+                options={options}
+              />
             </Item>
 
             <Item>
@@ -90,13 +98,19 @@ const Profile: React.FC = () => {
 
             <Item>
               <span>Instituição de ensino:</span>
-              <Input name="university" placeholder="Instituição de ensino" />
+              <Scope path={`${profile.teacher ? 'teacher' : 'student'}`}>
+                <Input name="university" placeholder="Instituição de ensino" />
+              </Scope>
             </Item>
 
-            <Item>
-              <span>Matrícula:</span>
-              <Input name="registration" placeholder="Matrícula" />
-            </Item>
+            {profile.student && (
+              <Item>
+                <span>Matrícula:</span>
+                <Scope path="student">
+                  <Input name="registration" placeholder="Matrícula" />
+                </Scope>
+              </Item>
+            )}
 
             <ActionButons>
               <Button
