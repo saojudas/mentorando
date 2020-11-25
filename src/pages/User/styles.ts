@@ -55,14 +55,95 @@ export const ContentSection = styled.section`
 
 export const Content = styled.div`
   width: 100%;
-  align-items: center;
-  margin: 0 0 50px 0;
-  justify-content: center;
+
+  margin: 0 0 50px 120px;
   padding: 0 60px;
 
   h1 {
     text-align: center;
     font-weight: 500;
     font-size: 2.5em;
+  }
+
+  h3 {
+    margin-top: 40px;
+    font-weight: 500;
+    font-size: 2em;
+    color: ${props =>
+      props.theme.title === 'light'
+        ? props.theme.colors.black
+        : props.theme.colors.white};
+  }
+`;
+
+export const UserPhoto = styled.div`
+  height: 200px;
+  display: flex;
+  justify-content: center;
+
+  img {
+    height: 200px;
+    width: 200px;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+    margin-bottom: 9px;
+  }
+`;
+
+export const Name = styled.div`
+  margin-top: 32px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+
+  span {
+    color: ${props => props.theme.colors.primary};
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  svg {
+    margin-left: 12px;
+  }
+`;
+
+export const Description = styled.div`
+  p {
+    margin-top: 24px;
+    font-size: 1.1em;
+    color: ${props =>
+      props.theme.title === 'light'
+        ? props.theme.colors.black
+        : props.theme.colors.white};
+  }
+`;
+
+export const MoreInfo = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+
+  div {
+    margin-bottom: 0 !important;
+    height: 44px !important;
+    border-radius: 50px !important;
+  }
+`;
+
+export const Videos = styled.div`
+  margin: 32px 0 60px 0px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  column-gap: 24px;
+  row-gap: 36px;
+  justify-items: center;
+
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
   }
 `;
