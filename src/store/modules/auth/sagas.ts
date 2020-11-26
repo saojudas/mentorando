@@ -89,7 +89,18 @@ export function signOut() {
   history.push('/');
 }
 
+export function setToken({ payload }: AnyAction) {
+  if (!payload) return;
+
+  const { token } = payload.auth;
+
+  if (token) {
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+  }
+}
+
 export default all([
+  takeLatest('persist/REHYDRATE', setToken),
   takeLatest(SIGN_IN_REQUEST, signIn),
   takeLatest(SIGN_UP_REQUEST, signUp),
   takeLatest(SIGN_OUT, signOut),
