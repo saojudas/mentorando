@@ -1,4 +1,11 @@
-import React, { useContext, useState, useRef, useCallback } from 'react';
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+} from 'react';
+import { useDispatch } from 'react-redux';
 import { ThemeContext } from 'styled-components';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -11,7 +18,12 @@ import Select from '../../components/Select';
 import Button from '../../components/Button';
 import Link from '../../components/Link';
 
+import api from '../../services/api';
+
 import getValidationErrors from '../../utils/getValidationErrors';
+
+import { createVideoRequest } from '../../store/modules/video/actions';
+import { Video } from '../../store/modules/video/interfaces';
 
 import {
   Container,
@@ -25,42 +37,82 @@ import {
 const NewVideo: React.FC = () => {
   const { title, colors } = useContext(ThemeContext);
 
+  const dispatch = useDispatch();
+
   const formRef = useRef<FormHandles>(null);
 
   const [hasNewTags, setHasNewTags] = useState<boolean>(false);
+  const [areaOptions, setAreaOptions] = useState();
+  const [tagOptions, setTagOptions] = useState();
 
   const toggleNewTags = useCallback(() => {
     setHasNewTags(!hasNewTags);
   }, [hasNewTags]);
 
-  const handleSubmit = useCallback(async (data: object) => {
-    try {
-      const schema = Yup.object().shape({
-        title: Yup.string().required('Título obrigatório!'),
-        video_link: Yup.string().required('Link do vídeo obrigatório!'),
-        description: Yup.string().required(
-          'Preencha uma breve descrição sobre seu vídeo!',
-        ),
-        tags: Yup.string().required(
-          'Selecione pelo menos uma tag para o seu vídeo ser categorizado!',
-        ),
+  const handleSubmit = useCallback(
+    async (data: Video) => {
+      try {
+        const schema = Yup.object().shape({
+          title: Yup.string().required('Título obrigatório!'),
+          video_link: Yup.string().required('Link do vídeo obrigatório!'),
+          description: Yup.string().required(
+            'Preencha uma breve descrição sobre seu vídeo!',
+          ),
+          // tags: Yup.string().required(
+          //   'Selecione pelo menos uma tag para o seu vídeo ser categorizado!',
+          // ),
+        });
+
+        await schema.validate(data, { abortEarly: false });
+
+        formRef.current?.setErrors({});
+
+        console.log(data);
+        dispatch(createVideoRequest(data));
+      } catch (err) {
+        const errors = getValidationErrors(err);
+
+        formRef.current?.setErrors(errors);
+
+        console.log(errors);
+      }
+    },
+    [dispatch],
+  );
+
+  useEffect(() => {
+    async function loadAreas() {
+      const response = await api.get('areas');
+
+      const options = response.data.map((item: any) => {
+        return {
+          value: item.id,
+          label: item.name,
+        };
       });
 
-      await schema.validate(data, { abortEarly: false });
-
-      formRef.current?.setErrors({});
-    } catch (err) {
-      const errors = getValidationErrors(err);
-
-      formRef.current?.setErrors(errors);
+      setAreaOptions(options);
     }
+
+    loadAreas();
   }, []);
 
-  const options = [
-    { value: 'node', label: 'Node.js' },
-    { value: 'react', label: 'React JS' },
-    { value: 'react-native', label: 'React Native' },
-  ];
+  useEffect(() => {
+    async function loadTags() {
+      const response = await api.get('tags');
+
+      const options = response.data.map((item: any) => {
+        return {
+          value: item.id,
+          label: item.name,
+        };
+      });
+
+      setTagOptions(options);
+    }
+
+    loadTags();
+  }, []);
 
   return (
     <Container>
@@ -96,12 +148,23 @@ const NewVideo: React.FC = () => {
             </Item>
 
             <Item>
+              <span>Área</span>
+
+              <Select
+                name="area_id"
+                placeholder="Selecione a área do relacionada ao seu conteúdo."
+                options={areaOptions}
+              />
+            </Item>
+
+            <Item>
               <span>Tags</span>
 
               <Select
-                name="tags"
+                name="tags_ids"
                 placeholder="Selecione as tags dos assuntos relacionados ao seu conteúdo."
-                options={options}
+                options={tagOptions}
+                isMulti
               />
             </Item>
 
@@ -126,9 +189,9 @@ const NewVideo: React.FC = () => {
               <span>Relacione a área correlacionada de suas novas tags</span>
 
               <Select
-                name="tags"
+                name="tags_area_id"
                 placeholder="Selecione as áreas de correlação de suas tags."
-                options={options}
+                options={areaOptions}
                 disabled={!hasNewTags}
               />
             </Item>
