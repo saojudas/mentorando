@@ -10,7 +10,7 @@ import HandlesContext from '../../context/handles';
 import { signOut } from '../../store/modules/auth/actions';
 
 import logo from '../../assets/logo.svg';
-import userImg from '../../assets/jhon.jpg';
+import defaultAvatar from '../../assets/avatar-default.png';
 
 import { IRootState } from '../../store';
 
@@ -72,9 +72,14 @@ const Header: React.FC = () => {
       </ThemeSwitcher>
 
       <Profile>
-        <span>{profile?.username}</span>
+        <span>
+          {profile?.student ? profile?.student.name : profile?.teacher.name}
+        </span>
 
-        <img src={userImg} alt={profile?.username || ''} />
+        <img
+          src={profile?.avatar?.url || defaultAvatar}
+          alt={profile?.username || ''}
+        />
 
         <Actions>
           <li>
