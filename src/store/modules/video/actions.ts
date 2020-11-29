@@ -8,9 +8,14 @@ import {
   DELETE_VIDEO_REQUEST,
   DELETE_VIDEO_SUCCESS,
   DELETE_VIDEO_FAILURE,
+  UPLOAD_THUMBNAIL_REQUEST,
+  UPLOAD_THUMBNAIL_SUCCESS,
+  UPLOAD_THUMBNAIL_FAILURE,
+  CANCEL_THUMBNAIL,
+  UPLOAD_THUMBNAIL_REQUEST_SEND,
 } from './constants';
 
-import { Video } from './interfaces';
+import { Thumbnail, Video } from './interfaces';
 
 export function createVideoRequest(newVideo: Video) {
   return { type: CREATE_VIDEO_REQUEST, payload: { ...newVideo } };
@@ -46,4 +51,27 @@ export function deleteVideoSuccess() {
 
 export function deleteVideoFailure() {
   return { type: DELETE_VIDEO_FAILURE };
+}
+
+export function uploadThumbnailRequest(files: FileList | null) {
+  return { type: UPLOAD_THUMBNAIL_REQUEST, payload: { files } };
+}
+
+export function uploadThumbnailRequestSend(video_id: string, thumbnail: File) {
+  return {
+    type: UPLOAD_THUMBNAIL_REQUEST_SEND,
+    payload: { video_id, thumbnail },
+  };
+}
+
+export function uploadThumbnailSuccess(thumbnail: Thumbnail) {
+  return { type: UPLOAD_THUMBNAIL_SUCCESS, payload: { thumbnail } };
+}
+
+export function uploadThumbnailFailure() {
+  return { type: UPLOAD_THUMBNAIL_FAILURE };
+}
+
+export function cancelThumbnailRequest() {
+  return { type: CANCEL_THUMBNAIL };
 }
