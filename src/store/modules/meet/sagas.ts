@@ -50,22 +50,26 @@ export function* create({ payload }: AnyAction) {
       end_hour: parsedEndHour,
     });
 
-    // const response: AxiosResponse = yield call(api.post, 'meets', {
-    //   title,
-    //   meet_link,
-    //   members_id,
-    //   date_meet,
-    //   start_hour: parsedStartHour,
-    //   end_hour: parsedEndHour,
-    // });
+    const response: AxiosResponse = yield call(api.post, 'meets', {
+      title,
+      meet_link,
+      members_id,
+      date_meet,
+      start_hour: parsedStartHour,
+      end_hour: parsedEndHour,
+    });
 
     yield delay(1000);
 
-    // const newMeet = response.data as Meet;
+    const newMeet = response.data as Meet;
 
-    // yield put(createMeetSuccess(newMeet));
+    yield put(createMeetSuccess(newMeet));
 
-    // history.push('/home');
+    toast.success(`Reunião marcada para às ${parsedStartHour} com sucesso.`);
+
+    yield delay(3000);
+
+    history.push('/home');
   } catch (err) {
     yield put(createMeetFailure());
 
