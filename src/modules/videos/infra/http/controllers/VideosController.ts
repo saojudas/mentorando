@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 
 import CreateVideoService from '@modules/videos/services/CreateVideoService';
 import ListVideosService from '@modules/videos/services/ListVideosService';
+import ShowVideoService from '@modules/videos/services/ShowVideoService';
 
 export default class VideosController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -29,5 +30,15 @@ export default class VideosController {
     });
 
     return response.status(201).json(video);
+  }
+
+  public async show(request: Request, response: Response): Promise<Response> {
+    const { video_id } = request.params;
+
+    const showVideoService = container.resolve(ShowVideoService);
+
+    const video = await showVideoService.execute({ video_id });
+
+    return response.json(video);
   }
 }
