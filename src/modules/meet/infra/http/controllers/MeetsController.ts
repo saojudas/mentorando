@@ -22,8 +22,8 @@ export default class MeetsController {
       date_meet,
       start_hour,
       end_hour,
-      organizer_id,
     } = request.body;
+    const { id: organizer_id } = request.user;
 
     const createMeetService = container.resolve(CreateMeetService);
 
