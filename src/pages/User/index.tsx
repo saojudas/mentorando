@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
-// import { useParams } from 'react-router-dom';
 
 import AsideMenu from '../../components/AsideMenu';
+import Tag from '../../components/Tag';
+import Button from '../../components/Button';
+import CardVideo from '../../components/CardVideo';
+
 import { ReactComponent as AdviserSVG } from '../../assets/adviser.svg';
 
 import {
@@ -16,17 +19,10 @@ import {
   MoreInfo,
   Videos,
 } from './styles';
-import Tag from '../../components/Tag';
-import Button from '../../components/Button';
-import CardVideo from '../../components/CardVideo';
-
-// interface ParamsProps {
-//   id?: string;
-// }
 
 const User: React.FC = () => {
   const { title, colors } = useContext(ThemeContext);
-  // const params = useParams<ParamsProps>();
+
   const adviser = true;
 
   return (
@@ -81,61 +77,25 @@ const User: React.FC = () => {
 
           <Videos>
             <CardVideo
+              id="Video1"
               title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
               thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
               preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
             />
             <CardVideo
+              id="Video2"
               title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
               thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
               preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
             />
             <CardVideo
+              id="Video3"
               title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
               thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
               preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
             />
             <CardVideo
-              title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-              thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-              preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-            />
-            <CardVideo
-              title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-              thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-              preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-            />
-            <CardVideo
-              title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-              thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-              preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-            />
-            <CardVideo
-              title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-              thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-              preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-            />
-            <CardVideo
-              title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-              thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-              preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-            />
-            <CardVideo
-              title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-              thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-              preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-            />
-            <CardVideo
-              title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-              thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-              preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-            />
-            <CardVideo
-              title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-              thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-              preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-            />
-            <CardVideo
+              id="Video4"
               title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
               thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
               preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
