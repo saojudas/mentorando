@@ -11,9 +11,14 @@ import {
   DELETE_VIDEO_REQUEST,
   DELETE_VIDEO_SUCCESS,
   DELETE_VIDEO_FAILURE,
+  UPLOAD_THUMBNAIL_REQUEST,
+  UPLOAD_THUMBNAIL_SUCCESS,
+  UPLOAD_THUMBNAIL_FAILURE,
+  CANCEL_THUMBNAIL,
+  UPLOAD_THUMBNAIL_REQUEST_SEND,
 } from './constants';
 
-import { Video } from './interfaces';
+import { Thumbnail, Video } from './interfaces';
 
 interface VideoState {
   video: Video | undefined;
@@ -21,6 +26,8 @@ interface VideoState {
   updated: boolean;
   loading: boolean;
   error: boolean;
+  thumbnail: Thumbnail | undefined;
+  files: FileList | undefined;
 }
 
 const INITIAL_STATE = {
@@ -29,6 +36,8 @@ const INITIAL_STATE = {
   updated: false,
   loading: false,
   error: false,
+  thumbnail: undefined,
+  files: undefined,
 };
 
 export default function video(
@@ -88,6 +97,35 @@ export default function video(
       case DELETE_VIDEO_FAILURE: {
         draft.loading = false;
         draft.error = true;
+        break;
+      }
+
+      case UPLOAD_THUMBNAIL_REQUEST: {
+        draft.thumbnail = { url: URL.createObjectURL(action.payload.files[0]) };
+        draft.files = action.payload.files;
+        break;
+      }
+
+      case UPLOAD_THUMBNAIL_SUCCESS: {
+        draft.thumbnail = action.payload.thumbnail;
+        draft.loading = false;
+        break;
+      }
+
+      case UPLOAD_THUMBNAIL_FAILURE: {
+        draft.loading = false;
+        draft.thumbnail = undefined;
+        draft.error = true;
+        break;
+      }
+
+      case UPLOAD_THUMBNAIL_REQUEST_SEND: {
+        draft.thumbnail = undefined;
+        break;
+      }
+
+      case CANCEL_THUMBNAIL: {
+        draft.thumbnail = undefined;
         break;
       }
 
