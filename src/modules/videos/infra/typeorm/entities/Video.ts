@@ -13,6 +13,7 @@ import {
 import Area from '../../../../teachers/infra/typeorm/entities/Area';
 import User from '../../../../users/infra/typeorm/entities/User';
 import Tag from './Tag';
+import Thumbnail from './Thumbnail';
 
 @Entity('videos')
 class Video {
@@ -52,6 +53,9 @@ class Video {
   @OneToOne(() => User)
   @JoinColumn({ name: 'user_id' })
   user: User;
+
+  @OneToOne(() => Thumbnail, thumbnail => thumbnail.video)
+  thumbnail: Thumbnail;
 
   @CreateDateColumn()
   created_at: Date;
