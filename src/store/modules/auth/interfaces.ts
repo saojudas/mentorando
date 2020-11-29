@@ -1,3 +1,5 @@
+import { UserAvatar } from '../user/interfaces';
+
 export interface Teacher {
   id: string;
   name: string;
@@ -24,6 +26,7 @@ export interface User {
   username: string;
   name: string;
   email: string;
+  avatar: UserAvatar | undefined;
   created_at: Date;
   updated_at: Date;
   teacher: Teacher;
