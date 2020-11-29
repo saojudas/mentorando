@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+import { AxiosResponse } from 'axios';
+import api from '../../services/api';
 
 import AsideMenu from '../../components/AsideMenu';
 import CardVideo from '../../components/CardVideo';
 
 import { Container, Title, ContentSection, Videos } from './styles';
+import { Video } from '../../store/modules/video/interfaces';
 
 const Home: React.FC = () => {
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    async function loadVideos() {
+      const response: AxiosResponse = await api.get('videos');
+
+      setVideos(response.data);
+    }
+
+    loadVideos();
+  }, []);
+
   return (
     <Container>
       <Title>
@@ -15,176 +31,14 @@ const Home: React.FC = () => {
       <ContentSection>
         <AsideMenu />
         <Videos>
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
-          <CardVideo
-            title="O último Code/Drops! Script que calcula horas de vídeo | Code/Drops #68"
-            thumbnail="https://i.ytimg.com/vi/faekjlZuTFA/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBm1SmbuZtbsxkQj_Y_0qVzRAXqTA"
-            preview="https://i.ytimg.com/an_webp/faekjlZuTFA/mqdefault_6s.webp?du=3000&sqp=CICU7P0F&rs=AOn4CLAx8EdCkDs5V1qf80YrTISIkgZhkQ"
-          />
+          {videos.map((video: Video) => (
+            <CardVideo
+              key={String(video.id)}
+              id={video.id}
+              title={video.title}
+              thumbnail={video.thumbnail?.url || ''}
+            />
+          ))}
         </Videos>
       </ContentSection>
     </Container>
