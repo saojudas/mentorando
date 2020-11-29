@@ -11,6 +11,7 @@ export interface Student {
 export interface Report {
   id: string;
   students: Student[];
+  students_ids: string[];
   subject_matter: string;
   report_date: Date;
   start_hour: string;
