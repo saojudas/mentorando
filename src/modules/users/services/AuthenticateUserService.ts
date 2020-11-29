@@ -27,22 +27,23 @@ export default class AuthenticateUserService {
   public async execute({ email, password }: IRequest): Promise<Response> {
     const user = await this.usersRepository.findByEmail(email);
 
-    if (!user) throw new AppError('E-Mail or Password incorrect!', 401);
+    if (!user) {
+      throw new AppError('E-Mail or Password incorrect!', 401);
+    }
 
     const passwordMatched = bcrypt.compare(password, user.password_hash);
 
-    if (!passwordMatched)
+    if (!passwordMatched) {
       throw new AppError('E-Mail or Password incorrect!', 401);
+    }
 
     const { secret, expiresIn } = authConfig;
 
-    const token = sign(
-      {
-        isTeacher: user.teacher !== null,
-      },
-      secret,
-      { subject: user.id, expiresIn },
-    );
+    const token = sign({ isTeacher: user.teacher !== null }, secret, {
+      subject: user.id,
+      expiresIn,
+    });
+
     return { user, token };
   }
 }
