@@ -13,6 +13,10 @@
   <a href="#information_source-extensões-vs-code">Dependências de Lint</a>
 </p>
 
+<p align="center">
+  <img width="100%" height="100%" src="./src/assets/Mentorando.gif" height="1920" width="1080" alt="Fastfeet" />
+</p>
+
 ## :rocket: Tecnologias
 
 Este projeto utiliza as seguintes bibliotecas.
