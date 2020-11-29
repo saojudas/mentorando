@@ -66,36 +66,13 @@ export const Content = styled.div`
   }
 `;
 
-export const UserPhoto = styled.div`
-  height: 200px;
-  display: flex;
-  justify-content: center;
-
-  a {
-    position: relative;
-  }
-
-  img {
-    height: 200px;
-    width: 200px;
-
-    object-fit: contain;
-
-    border-radius: 50%;
-    margin-bottom: 9px;
-  }
-  svg {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-  }
-`;
-
 export const Item = styled.div`
   span {
+    display: block;
+
     color: ${props => props.theme.colors.primary};
     font-weight: bold;
-    display: block;
+
     margin-top: 25px;
   }
 `;

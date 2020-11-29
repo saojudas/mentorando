@@ -1,34 +1,34 @@
 import React, { useCallback, useRef, useContext } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { ThemeContext } from 'styled-components';
 
 import { Form } from '@unform/web';
 import { FormHandles, Scope } from '@unform/core';
 
-import AsideMenu from '../../components/AsideMenu';
-import Select from '../../components/Select';
+import { IRootState } from '../../store';
 
-import { ReactComponent as EditSVG } from '../../assets/edit.svg';
+import Avatar from '../../components/Avatar';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+import Select from '../../components/Select';
+import Textarea from '../../components/Textarea';
+import AsideMenu from '../../components/AsideMenu';
 
 import {
   Container,
   Title,
   ContentSection,
   Content,
-  UserPhoto,
   Item,
   ActionButons,
 } from './styles';
-import Input from '../../components/Input';
-import Textarea from '../../components/Textarea';
-import Button from '../../components/Button';
-import { IRootState } from '../../store';
 
 const Profile: React.FC = () => {
   const { colors, title } = useContext(ThemeContext);
+
   const profile = useSelector((state: IRootState) => state.user.profile);
+
   const formRef = useRef<FormHandles>(null);
 
   const handleSubmit = useCallback(() => {
@@ -40,7 +40,7 @@ const Profile: React.FC = () => {
     { value: 'tecnology', label: 'Tecnologia' },
     { value: 'biology', label: 'Biologia' },
   ];
-  console.log(profile);
+
   return (
     <Container>
       <Title>
@@ -49,17 +49,10 @@ const Profile: React.FC = () => {
       </Title>
       <ContentSection>
         <AsideMenu />
+
         <Content>
           <Form ref={formRef} initialData={profile} onSubmit={handleSubmit}>
-            <UserPhoto>
-              <img
-                src="https://avatars3.githubusercontent.com/u/39928763?s=460&u=4f646846555a7597d42a9685c053df562a57a779&v=4"
-                alt="A Lenda"
-              />
-              <Link to="/home">
-                <EditSVG />
-              </Link>
-            </UserPhoto>
+            <Avatar />
 
             <Item>
               <span>Nome de usuário:</span>
