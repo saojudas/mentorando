@@ -11,6 +11,7 @@ import {
 import Meet from '../../../../meet/infra/typeorm/entities/Meet';
 import Teacher from '../../../../teachers/infra/typeorm/entities/Teacher';
 import Student from '../../../../students/infra/typeorm/entities/Student';
+import UserAvatar from './UserAvatar';
 
 @Entity('users')
 class User {
@@ -34,6 +35,9 @@ class User {
 
   @ManyToMany(() => Meet, meet => meet.members)
   meets: Meet[];
+
+  @OneToOne(() => UserAvatar, userAvatar => userAvatar.user)
+  avatar: UserAvatar;
 
   @CreateDateColumn()
   created_at: Date;
