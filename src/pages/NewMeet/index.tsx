@@ -1,4 +1,11 @@
-import React, { useContext, useCallback, useRef } from 'react';
+import React, {
+  useContext,
+  useCallback,
+  useRef,
+  useState,
+  useEffect,
+} from 'react';
+import { useDispatch } from 'react-redux';
 import { ThemeContext } from 'styled-components';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -10,7 +17,15 @@ import Select from '../../components/Select';
 import Button from '../../components/Button';
 import DatePicker from '../../components/DatePicker';
 
+import api from '../../services/api';
+
 import getValidationErrors from '../../utils/getValidationErrors';
+
+import {
+  createMeetRequest,
+  deleteMeetRequest,
+} from '../../store/modules/meet/actions';
+import { Meet } from '../../store/modules/meet/interfaces';
 
 import {
   Container,
@@ -25,29 +40,57 @@ import {
 const NewMeet: React.FC = () => {
   const { title, colors } = useContext(ThemeContext);
 
+  const dispatch = useDispatch();
+
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = useCallback(async (data: object) => {
-    try {
-      const schema = Yup.object().shape({
-        title: Yup.string().required('Título obrigatório!'),
-        meet: Yup.string().required('Link do encontro obrigatório'),
-        members: Yup.string().required(
-          'é necessário pelo menos um membro para criar uma reunião',
-        ),
-        date_meet: Yup.string().required('Data obrigatório'),
-        start_hour: Yup.string().required('Horário de início obrigatório'),
-        end_hour: Yup.string().required('Horário de fim obrigatório'),
+  const [membersOptions, setMembersOptions] = useState();
+
+  const handleSubmit = useCallback(
+    async (data: Meet) => {
+      try {
+        const schema = Yup.object().shape({
+          title: Yup.string().required('Título obrigatório!'),
+          meet_link: Yup.string().required('Link do encontro obrigatório'),
+          members_ids: Yup.string().required(
+            'é necessário pelo menos um membro para criar uma reunião',
+          ),
+          date_meet: Yup.string().required('Data obrigatório'),
+          start_hour: Yup.string().required('Horário de início obrigatório'),
+          end_hour: Yup.string().required('Horário de fim obrigatório'),
+        });
+
+        console.log(data);
+
+        await schema.validate(data, { abortEarly: false });
+
+        formRef.current?.setErrors({});
+
+        dispatch(createMeetRequest(data));
+      } catch (err) {
+        const errors = getValidationErrors(err);
+
+        formRef.current?.setErrors(errors);
+      }
+    },
+    [dispatch],
+  );
+
+  useEffect(() => {
+    async function loadMembers() {
+      const response = await api.get('users');
+
+      const options = response.data.map((item: any) => {
+        return {
+          value: item.id,
+          label: item.student ? item.student.name : item.teacher.name,
+        };
       });
 
-      await schema.validate(data, { abortEarly: false });
-
-      formRef.current?.setErrors({});
-    } catch (err) {
-      const errors = getValidationErrors(err);
-
-      formRef.current?.setErrors(errors);
+      setMembersOptions(options);
     }
+
+    loadMembers();
   }, []);
 
   return (
@@ -71,15 +114,16 @@ const NewMeet: React.FC = () => {
             <Item color={colors.primary}>
               <span>Link do encontro</span>
 
-              <Input name="meet" placeholder="https://" />
+              <Input name="meet_link" placeholder="https://" />
             </Item>
 
             <Item color={colors.primary}>
               <span>Integrantes da reunião</span>
 
               <Select
-                name="members"
+                name="members_ids"
                 placeholder="Selecione os integrantes que participarão da reunião."
+                options={membersOptions}
               />
             </Item>
 
