@@ -6,19 +6,20 @@ import { ThemeContext } from 'styled-components';
 import { Container, Thumbnail, CardInfo } from './styles';
 
 interface CardVideoProps {
+  id: string;
   title: string;
   thumbnail: string;
-  preview: string;
+  preview?: string;
 }
 
-const CardVideo: React.FC<CardVideoProps> = ({ title, thumbnail, preview }) => {
+const CardVideo: React.FC<CardVideoProps> = ({ id, title, thumbnail }) => {
   const { colors } = useContext(ThemeContext);
 
   const [isHover, setIsHover] = useState(false);
 
   return (
     <Container>
-      <Link to="/video">
+      <Link to={`/video?video_id=${id}`}>
         <Thumbnail
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
@@ -26,7 +27,7 @@ const CardVideo: React.FC<CardVideoProps> = ({ title, thumbnail, preview }) => {
           {!isHover ? (
             <img src={thumbnail} alt="Thumbnail" />
           ) : (
-            <img src={preview} alt="Preview" />
+            <img src={thumbnail} alt="Preview" />
           )}
         </Thumbnail>
       </Link>
