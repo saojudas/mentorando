@@ -69,9 +69,9 @@ const NewVideo: React.FC = () => {
           description: Yup.string().required(
             'Preencha uma breve descrição sobre seu vídeo!',
           ),
-          // tags: Yup.string().required(
-          //   'Selecione pelo menos uma tag para o seu vídeo ser categorizado!',
-          // ),
+          tags_ids: Yup.string().required(
+            'Selecione pelo menos uma tag para o seu vídeo ser categorizado!',
+          ),
         });
 
         await schema.validate(data, { abortEarly: false });
@@ -197,17 +197,6 @@ const NewVideo: React.FC = () => {
                   <span />
                 </label>
               </div>
-            </Item>
-
-            <Item enabled={hasNewTags} opacity={0.4}>
-              <span>Relacione a área correlacionada de suas novas tags</span>
-
-              <Select
-                name="tags_area_id"
-                placeholder="Selecione as áreas de correlação de suas tags."
-                options={areaOptions}
-                disabled={!hasNewTags}
-              />
             </Item>
 
             <ActionButons>
