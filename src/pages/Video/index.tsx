@@ -1,6 +1,14 @@
-import React, { useState, useCallback } from 'react';
-
+import React, { useState, useCallback, useEffect } from 'react';
 import Iframe from 'react-iframe';
+
+import useQueryParams from '../../hooks/useQueryParams';
+
+import {
+  Video as IVideo,
+  Tag as ITag,
+} from '../../store/modules/video/interfaces';
+
+import api from '../../services/api';
 
 import AsideMenu from '../../components/AsideMenu';
 import Tag from '../../components/Tag';
@@ -16,11 +24,31 @@ import {
 } from './styles';
 
 const Video: React.FC = () => {
+  const [video, setVideo] = useState<IVideo>();
   const [isTheater, setIsTheater] = useState<boolean>(true);
+
+  const video_id = useQueryParams('video_id');
 
   const toggleTheater = useCallback(() => {
     setIsTheater(!isTheater);
   }, [isTheater]);
+
+  useEffect(() => {
+    async function loadVideo() {
+      const response = await api.get(`videos/${video_id}`);
+
+      const { video_link } = response.data;
+
+      response.data.key = video_link.substr(
+        video_link.search('v=') + 2,
+        video_link.length,
+      );
+
+      setVideo(response.data);
+    }
+
+    loadVideo();
+  }, [video_id]);
 
   return (
     <Container>
@@ -29,36 +57,33 @@ const Video: React.FC = () => {
         <Content isTheater={isTheater}>
           {isTheater && (
             <Title>
-              <h1>
-                O último Code/Drops! Script que calcula horas de vídeo |
-                Code/Drops #68
-              </h1>
+              <h1>{video?.title}</h1>
             </Title>
           )}
+
           <FrameVideo>
             <button type="button" onClick={toggleTheater}>
               MODO TEATRO
             </button>
+
             <Iframe
-              url="https://www.youtube.com/embed/faekjlZuTFA"
+              url={`https://www.youtube.com/embed/${video?.key}`}
               width="100%"
-              height="664px"
+              height={`${window.innerHeight - 160}px`}
               allow="fullscreen"
             />
           </FrameVideo>
+
           <Description>
             <h3>Descrição</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-              consequuntur dolores accusamus voluptate. Iure, a, blanditiis
-              dolore sapiente ipsa iste numquam, quisquam non neque corporis
-              quidem sunt quis expedita delectus.
-            </p>
+
+            <p style={{ whiteSpace: 'break-spaces' }}>{video?.description}</p>
           </Description>
+
           <Tags>
-            <Tag name="React JS" />
-            <Tag name="Node JS" />
-            <Tag name="Docker" />
+            {video?.tags.map((tag: ITag) => (
+              <Tag key={tag.id} name={tag.name} />
+            ))}
           </Tags>
         </Content>
       </ContentSection>
