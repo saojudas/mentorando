@@ -27,14 +27,23 @@ class VideosRepository implements IVideosRepository {
   }
 
   public async find(): Promise<Video[]> {
-    const videos = await this.ormRepository.find();
+    const videos = await this.ormRepository.find({ relations: ['thumbnail'] });
 
     return videos;
+  }
+
+  public async findById(id: string): Promise<Video | undefined> {
+    const video = await this.ormRepository.findOne(id, {
+      relations: ['thumbnail'],
+    });
+
+    return video;
   }
 
   public async findByTitle(title: string): Promise<Video | undefined> {
     const video = await this.ormRepository.findOne({
       where: { title },
+      relations: ['thumbnail'],
     });
 
     return video;
@@ -46,6 +55,7 @@ class VideosRepository implements IVideosRepository {
   ): Promise<Video | undefined> {
     const video = await this.ormRepository.findOne({
       where: { title, user_id },
+      relations: ['thumbnail'],
     });
 
     return video;
