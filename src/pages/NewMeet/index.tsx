@@ -21,10 +21,7 @@ import api from '../../services/api';
 
 import getValidationErrors from '../../utils/getValidationErrors';
 
-import {
-  createMeetRequest,
-  deleteMeetRequest,
-} from '../../store/modules/meet/actions';
+import { createMeetRequest } from '../../store/modules/meet/actions';
 import { Meet } from '../../store/modules/meet/interfaces';
 
 import {
@@ -52,15 +49,13 @@ const NewMeet: React.FC = () => {
         const schema = Yup.object().shape({
           title: Yup.string().required('Título obrigatório!'),
           meet_link: Yup.string().required('Link do encontro obrigatório'),
-          members_ids: Yup.string().required(
+          members_id: Yup.string().required(
             'é necessário pelo menos um membro para criar uma reunião',
           ),
           date_meet: Yup.string().required('Data obrigatório'),
           start_hour: Yup.string().required('Horário de início obrigatório'),
           end_hour: Yup.string().required('Horário de fim obrigatório'),
         });
-
-        console.log(data);
 
         await schema.validate(data, { abortEarly: false });
 
@@ -121,9 +116,10 @@ const NewMeet: React.FC = () => {
               <span>Integrantes da reunião</span>
 
               <Select
-                name="members_ids"
+                name="members_id"
                 placeholder="Selecione os integrantes que participarão da reunião."
                 options={membersOptions}
+                isMulti
               />
             </Item>
 
