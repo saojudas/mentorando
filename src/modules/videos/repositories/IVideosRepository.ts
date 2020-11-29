@@ -6,6 +6,7 @@ export default interface IVideosRepository {
   create(data: ICreateVideoDTO): Promise<Video>;
   save(video: Video): Promise<Video>;
   find(): Promise<Video[]>;
+  findById(id: string): Promise<Video | undefined>;
   findByTitle(title: string): Promise<Video | undefined>;
   findByTitleAndUserId(
     title: string,
