@@ -1,46 +1,84 @@
-# Getting Started with Create React App
+<h1 align="center" style="background: #7475FF; border-radius: 16px; padding: 18px;">
+	<img alt="Mentorando" src="./src/assets/logo.svg" width="400px" />
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h4 align="center">
+	Acompanhamento e Acolhimento!
+</h4>
 
-## Available Scripts
+<p align="center">
+	<a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+	<a href="#page_facing_up-introdução">Introdução</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+	<a href="#information_source-como-rodar-o-projeto">Como rodar o projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#information_source-extensões-vs-code">Dependências de Lint</a>
+</p>
 
-In the project directory, you can run:
+## :rocket: Tecnologias
 
-### `yarn start`
+Este projeto utiliza as seguintes bibliotecas.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [polished](https://polished.js.org/)
+- [react-icons](https://react-icons.github.io/react-icons/)
+- [react-routes-dom](https://reactrouter.com/web/guides/quick-start)
+- [styled-components](https://styled-components.com/)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## :page_facing_up: Introdução
 
-### `yarn test`
+Muitos alunos ficam na incerteza do futuro, como é o mercado de trabalho, o
+que deve ser aprendido para agilizar a entrada no mercado de trabalho. E
+essas perguntas e angústias levam muitas vezes a desistência do curso por
+não encontrar a resposta ou não encontrar o caminho para a solução.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## :information_source: Extensões Vs Code
 
-### `yarn build`
+Para o processo de lint do projeto você precisa instalar algumas extensões:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Editor Config](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint#:~:text=The%20extension%20is%20linting%20an,custom%20task%20in%20tasks.json%20.)
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Essas extensões fazem parte da padronização de código e ajudam no desenvolvimento do projeto, o EditorConfig irá ser o responsável por formatar a quebra de linha do projeto para o padrão configurado (neste caso usamos o padrão LF do ubuntu), o ESlint irá padronizar o código para uma melhor escrita e por fim e não menos importante o Prettier irá deixar quebrar as linhas caso fiquem muito extensas.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## :information_source: Como rodar o projeto
 
-### `yarn eject`
+Abaixo seguem as intruções para rodar o projeto:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Atenção!!! Você precisa ter as ferramentas [Git](https://git-scm.com), [Node.js v10.16][nodejs] ou superior instaladas no seu computador.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## :boom: Erros comuns
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Alguns erros odem ocorrer ao baixar este repositório, como por exemplo a quebra de linha de lf (Linux) para crlf (Windows), caso isso ocorra rode o comando abaixo:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+# Entrar na pasta do projeto
+cd oracullum-web
 
-## Learn More
+# Rodar o fix linting de código do ESLint
+yarn eslint --fix .
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Obs.: Adicionamos no script start dentro do arquivo package.json este recurso para simplificar o uso da aplicação para qualquer novo estudante conhecer o ecossistema do React JS.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## :mag: Linhas de Comandos
+
+Em seu Terminal execute os seguintes comandos:
+
+```bash
+# Clonar o repositório
+$ git clone https://github.com/DevelopersFlow/mentorando-web.git
+
+# Entrar na pasta do projeto
+$ cd mentorando-web
+
+# Instalar as dependências
+$ yarn
+
+# Para rodar a aplicação web
+$ yarn start
+```
+
+Construído por [Bruno Futema](https://www.linkedin.com/in/brunofutema/) e [Jhonatan da Costa](https://www.linkedin.com/in/jhonatan-da-costa/) estudantes da USJT em um projeto de extensão :wave: [Mais projetos nossos](https://github.com/DevelopersFlow)
+
+[nodejs]: https://nodejs.org/
+[yarn]: https://yarnpkg.com/
+[vc]: https://code.visualstudio.com/
