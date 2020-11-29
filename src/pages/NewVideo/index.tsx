@@ -16,13 +16,17 @@ import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
 import Button from '../../components/Button';
+import Upload from '../../components/Upload';
 import Link from '../../components/Link';
 
 import api from '../../services/api';
 
 import getValidationErrors from '../../utils/getValidationErrors';
 
-import { createVideoRequest } from '../../store/modules/video/actions';
+import {
+  createVideoRequest,
+  uploadThumbnailRequest,
+} from '../../store/modules/video/actions';
 import { Video } from '../../store/modules/video/interfaces';
 
 import {
@@ -49,6 +53,13 @@ const NewVideo: React.FC = () => {
     setHasNewTags(!hasNewTags);
   }, [hasNewTags]);
 
+  const handleUpload = useCallback(
+    async (files: any) => {
+      dispatch(uploadThumbnailRequest(files));
+    },
+    [dispatch],
+  );
+
   const handleSubmit = useCallback(
     async (data: Video) => {
       try {
@@ -67,14 +78,11 @@ const NewVideo: React.FC = () => {
 
         formRef.current?.setErrors({});
 
-        console.log(data);
         dispatch(createVideoRequest(data));
       } catch (err) {
         const errors = getValidationErrors(err);
 
         formRef.current?.setErrors(errors);
-
-        console.log(errors);
       }
     },
     [dispatch],
@@ -126,6 +134,12 @@ const NewVideo: React.FC = () => {
           <h1>Cadastrar um novo vídeo</h1>
 
           <Form ref={formRef} onSubmit={handleSubmit}>
+            <Item style={{ marginTop: 20 }}>
+              <Upload
+                onUpload={handleUpload}
+                message="Arraste a thumbnail do seu vídeo aqui"
+              />
+            </Item>
             <Item>
               <span>Título</span>
 
