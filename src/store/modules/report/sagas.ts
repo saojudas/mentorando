@@ -23,7 +23,7 @@ export function* create({ payload }: AnyAction) {
     } = payload as Report;
 
     const response: AxiosResponse = yield call(api.post, 'reports', {
-      students_ids,
+      students_ids: [students_ids],
       subject_matter,
       report_date,
       start_hour,

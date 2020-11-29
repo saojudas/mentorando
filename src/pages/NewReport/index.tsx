@@ -1,4 +1,11 @@
-import React, { useContext, useCallback, useRef } from 'react';
+import React, {
+  useContext,
+  useCallback,
+  useRef,
+  useEffect,
+  useState,
+} from 'react';
+import { useDispatch } from 'react-redux';
 import { ThemeContext } from 'styled-components';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -6,9 +13,16 @@ import * as Yup from 'yup';
 
 import AsideMenu from '../../components/AsideMenu';
 import Textarea from '../../components/Textarea';
-import Input from '../../components/Input';
+import Button from '../../components/Button';
+import Select from '../../components/Select';
 import DatePicker from '../../components/DatePicker';
+
 import getValidationErrors from '../../utils/getValidationErrors';
+
+import api from '../../services/api';
+
+import { createReportRequest } from '../../store/modules/report/actions';
+import { Report } from '../../store/modules/report/interfaces';
 
 import {
   Container,
@@ -19,32 +33,55 @@ import {
   Item,
   ActionButons,
 } from './styles';
-import Button from '../../components/Button';
 
 const NewReport: React.FC = () => {
   const { title, colors } = useContext(ThemeContext);
+
+  const dispatch = useDispatch();
+
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = useCallback(async (data: object) => {
-    try {
-      const schema = Yup.object().shape({
-        members: Yup.string().required(
-          'é necessário pelo menos um aluno para criar um relatório',
-        ),
-        subject: Yup.string().required('Assunto obrigatório'),
-        date_meet: Yup.string().required('Data obrigatório'),
-        start_hour: Yup.string().required('Horário de início obrigatório'),
-        end_hour: Yup.string().required('Horário de fim obrigatório'),
+  const [studentsOptions, setStudentsOptions] = useState();
+
+  const handleSubmit = useCallback(
+    async (data: Report) => {
+      try {
+        const schema = Yup.object().shape({
+          students_ids: Yup.string().required(
+            'é necessário pelo menos um aluno para criar um relatório',
+          ),
+          subject_matter: Yup.string().required('Assunto obrigatório'),
+          report_date: Yup.string().required('Data obrigatório'),
+          start_hour: Yup.string().required('Horário de início obrigatório'),
+          end_hour: Yup.string().required('Horário de fim obrigatório'),
+        });
+
+        await schema.validate(data, { abortEarly: false });
+
+        formRef.current?.setErrors({});
+
+        dispatch(createReportRequest(data));
+      } catch (err) {
+        const errors = getValidationErrors(err);
+
+        formRef.current?.setErrors(errors);
+      }
+    },
+    [dispatch],
+  );
+
+  useEffect(() => {
+    async function loadStudents() {
+      const response = await api.get('students');
+
+      const options = response.data.map((item: any) => {
+        return { value: item.id, label: item.name };
       });
 
-      await schema.validate(data, { abortEarly: false });
-
-      formRef.current?.setErrors({});
-    } catch (err) {
-      const errors = getValidationErrors(err);
-
-      formRef.current?.setErrors(errors);
+      setStudentsOptions(options);
     }
+
+    loadStudents();
   }, []);
 
   return (
@@ -61,16 +98,19 @@ const NewReport: React.FC = () => {
           <Form ref={formRef} onSubmit={handleSubmit}>
             <Item color={colors.primary}>
               <span>Nome dos alunos</span>
-              <Input
-                name="members"
-                placeholder="Selecione os alunos que participaram da reunião."
+
+              <Select
+                name="students_ids"
+                placeholder="Selecione o aluno que participou."
+                options={studentsOptions}
               />
             </Item>
 
             <Item color={colors.primary}>
               <span>Assunto</span>
+
               <Textarea
-                name="subject"
+                name="subject_matter"
                 placeholder="Digite uma descrição para o seu relatório"
               />
             </Item>
@@ -78,8 +118,9 @@ const NewReport: React.FC = () => {
             <DateTimeInputsContainer>
               <Item color={colors.primary}>
                 <span>Data do encontro</span>
+
                 <DatePicker
-                  name="date_meet"
+                  name="report_date"
                   placeholderText="01/01/2020"
                   dateFormat="dd/MM/yyyy"
                 />
@@ -87,6 +128,7 @@ const NewReport: React.FC = () => {
 
               <Item color={colors.primary}>
                 <span>Horário de Inicio</span>
+
                 <DatePicker
                   name="start_hour"
                   placeholderText="20:00"
@@ -101,6 +143,7 @@ const NewReport: React.FC = () => {
 
               <Item color={colors.primary}>
                 <span>horário de Fim</span>
+
                 <DatePicker
                   name="end_hour"
                   placeholderText="21:00"
