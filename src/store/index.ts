@@ -24,6 +24,7 @@ sagaMiddleware.run(rootSaga);
 export interface IRootState {
   auth: any;
   user: any;
+  video: any;
 }
 
 export { store, persistor };
