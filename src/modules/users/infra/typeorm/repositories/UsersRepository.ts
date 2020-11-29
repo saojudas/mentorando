@@ -28,15 +28,15 @@ class UsersRepository implements IUsersRepository {
 
   public async find(): Promise<User[]> {
     const users = await this.ormRepository.find({
-      relations: ['teacher', 'student'],
+      relations: ['avatar', 'teacher', 'student'],
     });
 
     return users;
   }
 
-  public async findById(user_id: string): Promise<User | undefined> {
-    const user = await this.ormRepository.findOne(user_id, {
-      relations: ['teacher', 'student'],
+  public async findById(id: string): Promise<User | undefined> {
+    const user = await this.ormRepository.findOne(id, {
+      relations: ['avatar', 'teacher', 'student'],
     });
 
     return user;
@@ -53,7 +53,7 @@ class UsersRepository implements IUsersRepository {
   public async findByEmail(email: string): Promise<User | undefined> {
     const user = await this.ormRepository.findOne({
       where: { email },
-      relations: ['teacher', 'student'],
+      relations: ['avatar', 'teacher', 'student'],
     });
 
     return user;
@@ -62,7 +62,7 @@ class UsersRepository implements IUsersRepository {
   public async findByUsername(username: string): Promise<User | undefined> {
     const user = await this.ormRepository.findOne({
       where: { username },
-      relations: ['teacher', 'student'],
+      relations: ['avatar', 'teacher', 'student'],
     });
 
     return user;
