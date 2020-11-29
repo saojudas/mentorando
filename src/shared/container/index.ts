@@ -1,7 +1,12 @@
 import { container } from 'tsyringe';
 
+import './providers';
+
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
+
+import IUsersAvatarsRepository from '@modules/users/repositories/IUsersAvatarsRepository';
+import UsersAvatarsRepository from '@modules/users/infra/typeorm/repositories/UsersAvatarsRepository';
 
 import ITeachersRepository from '@modules/teachers/repositories/ITeachersRepository';
 import TeachersRepository from '@modules/teachers/infra/typeorm/repositories/TeachersRepository';
@@ -21,6 +26,9 @@ import TagsRepository from '@modules/videos/infra/typeorm/repositories/TagsRepos
 import IVideosRepository from '@modules/videos/repositories/IVideosRepository';
 import VideosRepository from '@modules/videos/infra/typeorm/repositories/VideosRepository';
 
+import IThumbnailsRepository from '@modules/videos/repositories/IThumbnailsRepository';
+import ThumbnailsRepository from '@modules/videos/infra/typeorm/repositories/ThumbnailsRepository';
+
 import IMeetsRepository from '@modules/meet/repositories/IMeetsRepository';
 import MeetsRepository from '@modules/meet/infra/typeorm/repositories/MeetsRepository';
 
@@ -30,6 +38,11 @@ import ReportsRepository from '@modules/advisors/infra/typeorm/repositories/Repo
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
+);
+
+container.registerSingleton<IUsersAvatarsRepository>(
+  'UsersAvatarsRepository',
+  UsersAvatarsRepository,
 );
 
 container.registerSingleton<ITeachersRepository>(
@@ -55,6 +68,11 @@ container.registerSingleton<IMeetsRepository>(
 container.registerSingleton<IVideosRepository>(
   'VideosRepository',
   VideosRepository,
+);
+
+container.registerSingleton<IThumbnailsRepository>(
+  'ThumbnailsRepository',
+  ThumbnailsRepository,
 );
 
 container.registerSingleton<ICandidatesRepository>(
