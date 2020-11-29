@@ -20,7 +20,10 @@ export const Container = styled.div<ContainerProps>`
   border: 2px solid ${props => props.theme.colors.primaryLighter};
   padding: 8px 16px;
   width: 100%;
-  color: ${props => props.theme.colors.grayLight};
+  color: ${props =>
+    props.theme.title === 'light'
+      ? props.theme.colors.grayLight
+      : props.theme.colors.white};
 
   display: flex;
   align-items: center;
@@ -60,7 +63,10 @@ export const Container = styled.div<ContainerProps>`
     background: transparent;
     flex: 1;
     border: 0;
-    color: ${props => props.theme.colors.black};
+    color: ${props =>
+      props.theme.title === 'light'
+        ? props.theme.colors.black
+        : props.theme.colors.white};
     width: 240px;
 
     &::placeholder {

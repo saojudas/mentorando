@@ -63,6 +63,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ name, ...rest }) => {
           <FaInfoCircle color={colors.red} size={20} />
         </Error>
       )}
+
       <ReactDatePicker
         selected={date}
         onChange={setDate}
