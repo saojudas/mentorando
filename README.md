@@ -1,5 +1,5 @@
-<h1 align="center" style="background: #7475FF; border-radius: 16px; padding: 18px;">
-	<img alt="Mentorando" src="./src/assets/logo.svg" width="400px" />
+<h1 align="center">
+	<img alt="Mentorando" src="./src/assets/logo-doc.svg" width="400px" />
 </h1>
 
 <h4 align="center">
