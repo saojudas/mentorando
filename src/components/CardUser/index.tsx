@@ -1,10 +1,17 @@
 import React from 'react';
 
 import { ReactComponent as AdviserSVG } from '../../assets/adviser.svg';
+import defaultAvatar from '../../assets/avatar-default.png';
 
 import { Container, CardBody, CardInfo, TagArea } from './styles';
 
-const CardUser: React.FC = () => {
+interface CardUser {
+  name: string;
+  area?: string;
+  avatar?: string;
+}
+
+const CardUser: React.FC<CardUser> = ({ name, area, avatar }) => {
   const adviser = true;
 
   return (
@@ -12,20 +19,17 @@ const CardUser: React.FC = () => {
       {adviser && <AdviserSVG />}
 
       <CardBody>
-        <img
-          src="https://avatars3.githubusercontent.com/u/39928763?s=460&u=4f646846555a7597d42a9685c053df562a57a779&v=4"
-          alt="A Lenda"
-        />
+        <img src={avatar || defaultAvatar} alt={`Foto de ${name}`} />
 
         <TagArea>
           <div>
-            <span>Tecnologia</span>
+            <span>{area}</span>
           </div>
         </TagArea>
       </CardBody>
 
       <CardInfo>
-        <strong>Jhonatan da Costa</strong>
+        <strong>{name}</strong>
       </CardInfo>
     </Container>
   );
