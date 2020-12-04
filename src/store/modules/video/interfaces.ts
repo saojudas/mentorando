@@ -21,7 +21,7 @@ export interface Video {
   id: string;
   key: string;
   title: string;
-  thumbnail?: Thumbnail;
+  thumbnail: Thumbnail;
   video_link: string;
   description: string;
   area_id: string;

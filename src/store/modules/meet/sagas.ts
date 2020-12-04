@@ -41,15 +41,6 @@ export function* create({ payload }: AnyAction) {
 
     const parsedEndHour = `${endHourI}:${endHourF}`;
 
-    console.log({
-      title,
-      meet_link,
-      members_id,
-      date_meet: parsedDateMeet,
-      start_hour: parsedStartHour,
-      end_hour: parsedEndHour,
-    });
-
     const response: AxiosResponse = yield call(api.post, 'meets', {
       title,
       meet_link,
