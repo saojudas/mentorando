@@ -26,6 +26,12 @@ class TeachersRepository implements ITeachersRepository {
     return teacher;
   }
 
+  public async findById(id: string): Promise<Teacher | undefined> {
+    const teacher = await this.ormRepository.findOne(id);
+
+    return teacher;
+  }
+
   public async findByName(name: string): Promise<Teacher | undefined> {
     const teacher = await this.ormRepository.findOne({ where: { name } });
 
