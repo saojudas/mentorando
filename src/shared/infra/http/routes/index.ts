@@ -8,6 +8,8 @@ import tagsRouter from '@modules/videos/infra/http/routes/tags.routes';
 import videosRouter from '@modules/videos/infra/http/routes/videos.routes';
 import meetsRouter from '@modules/meet/infra/http/routes/meets.routes';
 import reportsRouter from '@modules/advisors/infra/http/routes/reports.routes';
+import studentsRouter from '@modules/students/infra/http/routes/students.routes';
+import approveAdvisorsRouter from '@modules/teachers/infra/http/routes/approveAdvisor.routes';
 
 const routes = Router();
 
@@ -19,5 +21,7 @@ routes.use('/tags', tagsRouter);
 routes.use('/videos', videosRouter);
 routes.use('/meets', meetsRouter);
 routes.use('/reports', reportsRouter);
+routes.use('/students', studentsRouter);
+routes.use('/advisors', approveAdvisorsRouter);
 
 export default routes;
