@@ -25,6 +25,7 @@ import {
 
 const Video: React.FC = () => {
   const [video, setVideo] = useState<IVideo>();
+
   const [isTheater, setIsTheater] = useState<boolean>(true);
 
   const video_id = useQueryParams('video_id');
@@ -54,6 +55,7 @@ const Video: React.FC = () => {
     <Container>
       <ContentSection>
         {isTheater && <AsideMenu />}
+
         <Content isTheater={isTheater}>
           {isTheater && (
             <Title>
