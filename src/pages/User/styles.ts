@@ -140,7 +140,6 @@ export const Videos = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   column-gap: 24px;
   row-gap: 36px;
-  justify-items: center;
 
   a {
     text-decoration: none !important;
