@@ -32,6 +32,15 @@ class VideosRepository implements IVideosRepository {
     return videos;
   }
 
+  public async findByUserId(user_id: string): Promise<Video[]> {
+    const videos = await this.ormRepository.find({
+      where: { user_id },
+      relations: ['thumbnail'],
+    });
+
+    return videos;
+  }
+
   public async findById(id: string): Promise<Video | undefined> {
     const video = await this.ormRepository.findOne(id, {
       relations: ['thumbnail'],
