@@ -2,7 +2,7 @@ import { all, takeLatest, call, put, delay } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import { AxiosResponse } from 'axios';
 import { AnyAction } from 'redux';
-import { format, getHours, getMinutes } from 'date-fns';
+import { getHours, getMinutes } from 'date-fns';
 
 import api from '../../../services/api';
 import history from '../../../services/history';
@@ -28,8 +28,6 @@ export function* create({ payload }: AnyAction) {
       start_hour,
       end_hour,
     } = payload;
-
-    const parsedDateMeet = format(date_meet, 'yyyy-MM-dd');
 
     const startHourI = String(getHours(start_hour)).padStart(2, '0');
     const startHourF = String(getMinutes(start_hour)).padStart(2, '0');
