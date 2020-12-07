@@ -8,7 +8,7 @@ const Reports: React.FC = () => {
   return (
     <Container>
       <Title>
-        <h1>Início</h1>
+        <h1>Relatórios</h1>
         <section>teste</section>
       </Title>
       <ContentSection>
