@@ -44,7 +44,7 @@ const Routes: React.FC = () => (
       <Route path="/candidates" component={Candidates} isPrivate />
 
       <Route path="/video" component={Video} isPrivate />
-      <Route exact path="/user" component={User} isPrivate />
+      <Route path="/user" component={User} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
     </Switch>
   </Router>
