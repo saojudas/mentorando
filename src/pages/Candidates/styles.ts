@@ -66,3 +66,20 @@ export const Content = styled.div`
     font-size: 2.5em;
   }
 `;
+
+export const Users = styled.div`
+  margin-left: 140px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  column-gap: 24px;
+  row-gap: 36px;
+  justify-items: center;
+
+  z-index: -1;
+
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+`;
