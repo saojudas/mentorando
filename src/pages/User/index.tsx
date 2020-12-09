@@ -68,7 +68,7 @@ const User: React.FC = () => {
     <Container>
       <Title>
         <h1>Início</h1>
-        <section>teste</section>
+        {/* <section>teste</section> */}
       </Title>
 
       <ContentSection>
@@ -84,7 +84,7 @@ const User: React.FC = () => {
 
           <Name>
             <span>
-              {user?.student ? user.student.name : user?.teacher.name}
+              {user?.student ? user?.student?.name : user?.teacher?.name}
             </span>
 
             {user?.student?.is_advisor && <AdviserSVG />}
@@ -126,7 +126,7 @@ const User: React.FC = () => {
           <h3>Videos</h3>
 
           <Videos>
-            {user?.videos.map((video: Video) => (
+            {user?.videos?.map((video: Video) => (
               <CardVideo
                 key={video.id}
                 id={video.id}

@@ -14,7 +14,9 @@ export interface Candidate {
   id: string;
   aprovement: boolean;
   student_id: string;
+  student: Student;
   teacher_id: string;
+  teacher: Teacher;
   created_at: Date;
   updated_at: Date;
 }

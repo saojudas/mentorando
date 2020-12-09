@@ -88,7 +88,7 @@ const NewReport: React.FC = () => {
     <Container>
       <Title>
         <h1>Início</h1>
-        <section>teste</section>
+        {/* <section>teste</section> */}
       </Title>
       <ContentSection>
         <AsideMenu />

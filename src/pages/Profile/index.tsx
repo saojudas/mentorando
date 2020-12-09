@@ -45,7 +45,7 @@ const Profile: React.FC = () => {
     <Container>
       <Title>
         <h1>Perfil</h1>
-        <section>teste</section>
+        {/* <section>teste</section> */}
       </Title>
       <ContentSection>
         <AsideMenu />
