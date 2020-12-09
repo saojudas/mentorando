@@ -55,9 +55,8 @@ export const ContentSection = styled.section`
 
 export const Content = styled.div`
   width: 100%;
-  align-items: center;
-  margin: 0 0 50px 0;
-  justify-content: center;
+
+  margin: 0 0 50px 120px;
   padding: 0 60px;
 
   h1 {
