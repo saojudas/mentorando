@@ -28,7 +28,16 @@ class CandidatesRepository implements ICandidatesRepository {
 
   public async find(): Promise<Candidate[]> {
     const candidates = await this.ormRepository.find({
-      relations: ['teacher', 'student'],
+      relations: [
+        'teacher',
+        'student',
+        'teacher.user',
+        'teacher.user.avatar',
+        'teacher.user.area',
+        'student.user',
+        'student.user.avatar',
+        'student.user.area',
+      ],
     });
 
     return candidates;
@@ -36,7 +45,14 @@ class CandidatesRepository implements ICandidatesRepository {
 
   public async findById(id: string): Promise<Candidate | undefined> {
     const candidate = await this.ormRepository.findOne(id, {
-      relations: ['teacher', 'student'],
+      relations: [
+        'teacher',
+        'student',
+        'teacher.user',
+        'teacher.user.avatar',
+        'student.user',
+        'student.user.avatar',
+      ],
     });
 
     return candidate;

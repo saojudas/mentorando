@@ -27,7 +27,9 @@ class ReportsRepository implements IReportsRepository {
   }
 
   public async find(): Promise<Report[]> {
-    const reports = await this.ormRepository.find();
+    const reports = await this.ormRepository.find({
+      relations: ['advisor'],
+    });
 
     return reports;
   }
