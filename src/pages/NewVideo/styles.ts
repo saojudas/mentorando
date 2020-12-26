@@ -180,9 +180,5 @@ export const ActionButons = styled.div`
   margin-top: 50px;
 
   display: flex;
-
-  button,
-  a {
-    margin-left: 32px;
-  }
+  gap: 32px;
 `;
