@@ -26,8 +26,11 @@ const Textarea: React.FC<TextareaProps> = ({ name, ...rest }) => {
 
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
+  const [characters, setCharacters] = useState(0);
 
-  // const [characters, setCharacters] = useState(0);
+  const handleChange = useCallback(() => {
+    if (textareaRef.current) setCharacters(textareaRef.current.value.length);
+  }, []);
 
   const handleTextareaFocus = useCallback(() => {
     setIsFocused(true);
@@ -56,15 +59,18 @@ const Textarea: React.FC<TextareaProps> = ({ name, ...rest }) => {
       )}
 
       <textarea
+        onChange={handleChange}
         onFocus={handleTextareaFocus}
         onBlur={handleTextareaBlur}
+        onPaste={handleChange}
         defaultValue={defaultValue}
         ref={textareaRef}
         cols={2}
         rows={8}
         {...rest}
       />
-      <span>0 de 8000 caracteres</span>
+
+      <span>{characters} de 8000 caracteres</span>
     </Container>
   );
 };
