@@ -68,6 +68,7 @@ export const Container = styled.div<ContainerProps>`
     background: transparent;
     flex: 1;
     border: 0;
+    width: 100%;
     color: ${props =>
       props.theme.title === 'light'
         ? props.theme.colors.black
