@@ -23,6 +23,8 @@ export const Thumbnail = styled.div`
     width: 100%;
     height: 100%;
 
+    max-width: 254px;
+
     object-fit: cover;
 
     border-top-left-radius: 7px;
@@ -31,8 +33,7 @@ export const Thumbnail = styled.div`
 `;
 
 export const CardInfo = styled.div`
-  min-height: 41px;
-  max-height: 58px;
+  height: 42px;
 
   padding: 4px;
 
