@@ -52,7 +52,11 @@ const Header: React.FC = () => {
             <Link to="/#">MEUS VÍDEOS</Link>
           </li>
           <li>
-            <Link to="/new-candidate">SER CONSELHEIRO</Link>
+            {profile?.student ? (
+              <Link to="/new-candidate">SER CONSELHEIRO</Link>
+            ) : (
+              <Link to="/reports">RELATÓRIOS</Link>
+            )}
           </li>
         </ul>
       </NavigationBar>
