@@ -8,6 +8,8 @@ import {
   FaUsers,
   FaUserTag,
   FaArchive,
+  FaList,
+  FaTags,
 } from 'react-icons/fa';
 import { ThemeContext } from 'styled-components';
 import Ink from 'react-ink';
@@ -56,6 +58,26 @@ const AsideMenu: React.FC = () => {
           </Link>
         </Item>
       )}
+
+      <Item>
+        <Link to="/areas">
+          <Animation>
+            <FaList size={32} color={colors.white} />
+            <span>Áreas</span>
+            <Ink />
+          </Animation>
+        </Link>
+      </Item>
+
+      <Item>
+        <Link to="/tags">
+          <Animation>
+            <FaTags size={32} color={colors.white} />
+            <span>Tags</span>
+            <Ink />
+          </Animation>
+        </Link>
+      </Item>
 
       <Item>
         <Link to="/students">
