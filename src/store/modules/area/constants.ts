@@ -1,0 +1,3 @@
+export const CREATE_AREA_REQUEST = '@video/CREATE_AREA_REQUEST';
+export const CREATE_AREA_SUCCESS = '@video/CREATE_AREA_SUCCESS';
+export const CREATE_AREA_FAILURE = '@video/CREATE_AREA_FAILURE';
