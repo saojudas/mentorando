@@ -12,6 +12,8 @@ import NewVideo from '../pages/NewVideo';
 import NewMeet from '../pages/NewMeet';
 import NewReport from '../pages/NewReport';
 
+import Areas from '../pages/Areas';
+import Tags from '../pages/Tags';
 import Students from '../pages/Students';
 import Reports from '../pages/Reports';
 
@@ -37,6 +39,8 @@ const Routes: React.FC = () => (
       <Route path="/new-meet" component={NewMeet} isPrivate />
       <Route path="/new-report" component={NewReport} isPrivate />
 
+      <Route path="/areas" component={Areas} isPrivate />
+      <Route path="/tags" component={Tags} isPrivate />
       <Route path="/students" component={Students} isPrivate />
       <Route path="/reports" component={Reports} isPrivate />
 
