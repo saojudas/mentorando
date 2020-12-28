@@ -5,6 +5,8 @@ import user from './user/reducer';
 import video from './video/reducer';
 import meet from './meet/reducer';
 import report from './report/reducer';
+import area from './area/reducer';
+import tag from './tag/reducer';
 
 export default combineReducers({
   auth,
@@ -12,4 +14,6 @@ export default combineReducers({
   video,
   meet,
   report,
+  area,
+  tag,
 });
