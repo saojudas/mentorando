@@ -1,0 +1,3 @@
+export const CREATE_TAG_REQUEST = '@video/CREATE_TAG_REQUEST';
+export const CREATE_TAG_SUCCESS = '@video/CREATE_TAG_SUCCESS';
+export const CREATE_TAG_FAILURE = '@video/CREATE_TAG_FAILURE';
