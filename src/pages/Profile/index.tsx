@@ -1,4 +1,10 @@
-import React, { useCallback, useRef, useContext } from 'react';
+import React, {
+  useCallback,
+  useRef,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { useSelector } from 'react-redux';
 
 import { ThemeContext } from 'styled-components';
@@ -14,6 +20,10 @@ import Button from '../../components/Button';
 import Select from '../../components/Select';
 import Textarea from '../../components/Textarea';
 import AsideMenu from '../../components/AsideMenu';
+
+import api from '../../services/api';
+
+import { Area } from '../../store/modules/auth/interfaces';
 
 import {
   Container,
@@ -31,15 +41,30 @@ const Profile: React.FC = () => {
 
   const formRef = useRef<FormHandles>(null);
 
+  const [options, setOptions] = useState<{ value: string; label: string }[]>(
+    [],
+  );
+
   const handleSubmit = useCallback(() => {
     return null;
   }, []);
 
-  const options = [
-    { value: 'lawyer', label: 'Direito' },
-    { value: 'tecnology', label: 'Tecnologia' },
-    { value: 'biology', label: 'Biologia' },
-  ];
+  useEffect(() => {
+    async function loadAreas() {
+      const response = await api.get<Area[]>('areas');
+
+      const { data } = response;
+
+      const areaOptions = data.map(area => ({
+        value: area.id,
+        label: area.name,
+      }));
+
+      setOptions(areaOptions);
+    }
+
+    loadAreas();
+  }, []);
 
   return (
     <Container>
