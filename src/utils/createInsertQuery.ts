@@ -1,4 +1,8 @@
-export default function createInsertQuery(table: string, fields: any): string {
+export default function createInsertQuery(
+  table: string,
+  fields: any,
+  withReturn: boolean = true,
+): string {
   const keys: string[] = [];
   const values: string[] = [];
 
@@ -7,10 +11,13 @@ export default function createInsertQuery(table: string, fields: any): string {
     values.push(`'${fields[key]}'`);
   });
 
-  const query = `INSERT INTO ${table} (${keys.join(',')})
+  let query = `INSERT INTO ${table} (${keys.join(',')})
     VALUES (${values.join(',')})
-    RETURNING id
   `;
+
+  if (withReturn) {
+    query += 'RETURNING id';
+  }
 
   return query;
 }
