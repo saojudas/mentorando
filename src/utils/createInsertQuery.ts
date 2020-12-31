@@ -4,7 +4,7 @@ export default function createInsertQuery(table: string, fields: any): string {
 
   Object.keys(fields).forEach((key: string) => {
     keys.push(key);
-    values.push(`'${fields[key].replace('\'', '')}'`);
+    values.push(`'${fields[key]}'`);
   });
 
   const query = `INSERT INTO ${table} (${keys.join(',')})

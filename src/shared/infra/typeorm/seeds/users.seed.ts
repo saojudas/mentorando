@@ -5,6 +5,7 @@ import { pgConnection } from '../../../../config/db';
 import createInsertQuery from '../../../../utils/createInsertQuery';
 
 import ICreateUserDTO from '../../../../modules/users/dtos/ICreateUserDTO';
+import ICreateUserAvatarDTO from '../../../../modules/users/dtos/ICreateUserAvatarDTO';
 import ICreateTeacherDTO from '../../../../modules/teachers/dtos/ICreateTeacherDTO';
 import ICreateStudentDTO from '../../../../modules/students/dtos/ICreateStudentDTO';
 
@@ -40,7 +41,7 @@ async function createTeachers(): Promise<void> {
 
   while (teachers.length < totalTeachers) {
     teachers.push({
-      name: faker.name.findName(),
+      name: faker.name.findName().replace("'", ''),
       university: 'USJT',
       user_id: usersIds[Math.floor(Math.random() * totalUsers)],
     });
@@ -71,15 +72,40 @@ async function createStudents(): Promise<void> {
     pgConnection.query(createInsertQuery('students', student)),
   );
 
-  const createdTeachers = await Promise.all(studentsPromise);
+  const createdStudents = await Promise.all(studentsPromise);
 
-  createdTeachers.map(item => item.rows[0].id);
+  createdStudents.map(item => item.rows[0].id);
+}
+
+async function updateAvatars(): Promise<void> {
+  const usersAvatars: ICreateUserAvatarDTO[] = [];
+
+  for (let i = 0; i < usersIds.length; i++) {
+    const avatarName = `avatar${Math.ceil(Math.random() * 6)}.png`;
+
+    usersAvatars.push({
+      name: avatarName,
+      size: 16916,
+      key: avatarName,
+      url: `http://localhost:3333/files/${avatarName}`,
+      user_id: usersIds[i],
+    });
+  }
+
+  const usersAvatarsPromise = usersAvatars.map(userAvatar =>
+    pgConnection.query(createInsertQuery('users_avatars', userAvatar)),
+  );
+
+  const createdUsersAvatars = await Promise.all(usersAvatarsPromise);
+
+  createdUsersAvatars.map(item => item.rows[0].id);
 }
 
 async function usersSeed(): Promise<void> {
   await createUsers();
   await createTeachers();
   await createStudents();
+  await updateAvatars();
 }
 
 export { usersSeed };
