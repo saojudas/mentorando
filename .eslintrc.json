@@ -34,7 +34,8 @@
       }
     ],
     "camelcase": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "no-plusplus": "off"
   },
   "settings": {
     "import/resolver": {

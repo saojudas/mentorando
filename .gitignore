@@ -8,4 +8,10 @@ tmp/*
 !tmp/uploads
 tmp/uploads/*
 !tmp/uploads/.gitkeep
+!tmp/uploads/avatar1.png
+!tmp/uploads/avatar2.png
+!tmp/uploads/avatar3.png
+!tmp/uploads/avatar4.png
+!tmp/uploads/avatar5.png
+!tmp/uploads/avatar6.png
 coverage/
