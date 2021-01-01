@@ -38,6 +38,7 @@ const Students: React.FC = () => {
                   name={student.name}
                   area={student.user.area?.name}
                   avatar={student.user.avatar?.url}
+                  isAdvisor={student.is_advisor}
                 />
               </Link>
             ))}

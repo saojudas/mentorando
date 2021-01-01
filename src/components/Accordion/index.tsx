@@ -32,12 +32,6 @@ const Accordion: React.FC<AccordionProps> = ({
   const parsedDate = useMemo(() => format(new Date(date), 'dd/MM/yyyy'), [
     date,
   ]);
-  const parsedStartHour = useMemo(() => format(new Date(start_hour), 'HH:mm'), [
-    start_hour,
-  ]);
-  const parsedEndHour = useMemo(() => format(new Date(end_hour), 'HH:mm'), [
-    end_hour,
-  ]);
 
   return (
     <Container>
@@ -47,7 +41,7 @@ const Accordion: React.FC<AccordionProps> = ({
         <p>
           O(a) conselheiro(a) <span>{advisorName}</span> auxiliou o(a) aluno(a)
           <span> {studentName}</span> na data <span>{parsedDate}</span> das
-          <span> {parsedStartHour}</span> às <span>{parsedEndHour}</span>
+          <span> {start_hour}</span> às <span>{end_hour}</span>
         </p>
 
         {isOpen ? (
