@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react';
+import { toast } from 'react-toastify';
 import { format } from 'date-fns';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 import { TableColumn } from '../THead';
 
@@ -34,10 +36,20 @@ const TCell: React.FC<TCellProps> = ({ column, item }) => {
     }
   }, [column, item]);
 
+  const onCopy = useCallback((value: any) => {
+    toast.dark(`Valor ${value} copiado!`, {
+      autoClose: 1500,
+      position: 'bottom-right',
+      hideProgressBar: true,
+    });
+  }, []);
+
   return (
-    <Td>
-      <span>{render()}</span>
-    </Td>
+    <CopyToClipboard text={render()} onCopy={() => onCopy(render())}>
+      <Td>
+        <span>{render()}</span>
+      </Td>
+    </CopyToClipboard>
   );
 };
 
