@@ -1,5 +1,5 @@
 <h1 align="center">
-	<img alt="Mentorando" src="./src/assets/logo-doc.svg" width="400px" />
+	<img alt="Mentorando" src="./web/src/assets/logo-doc.svg" width="400px" />
 </h1>
 
 <h4 align="center">
@@ -45,13 +45,13 @@ Essas extensões fazem parte da padronização de código e ajudam no desenvolvi
 
 ## :information_source: Como rodar o projeto
 
-Abaixo seguem as intruções para rodar o projeto:
+Abaixo seguem as instruções para rodar o projeto:
 
 Atenção!!! Você precisa ter as ferramentas [Git](https://git-scm.com), [Node.js v10.16][nodejs] ou superior instaladas no seu computador.
 
 ## :boom: Erros comuns
 
-Alguns erros odem ocorrer ao baixar este repositório, como por exemplo a quebra de linha de lf (Linux) para crlf (Windows), caso isso ocorra rode o comando abaixo:
+Alguns erros ordem ocorrer ao baixar este repositório, como por exemplo a quebra de linha de lf (Linux) para crlf (Windows), caso isso ocorra rode o comando abaixo:
 
 ```bash
 # Entrar na pasta do projeto
@@ -69,10 +69,10 @@ Em seu Terminal execute os seguintes comandos:
 
 ```bash
 # Clonar o repositório
-$ git clone https://github.com/DevelopersFlow/mentorando-web.git
+$ git clone https://github.com/saojudas/mentorando.git
 
 # Entrar na pasta do projeto
-$ cd mentorando-web
+$ cd web ou cd server
 
 # Instalar as dependências
 $ yarn
