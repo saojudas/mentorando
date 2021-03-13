@@ -2,11 +2,15 @@
   "name": "mentorando-web",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://saojudas.github.io/mentorando",
   "scripts": {
-    "start": "yarn install && eslint --fix . && react-scripts start",
+    "prestart": "eslint --fix .",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -81,6 +85,7 @@
     "eslint-plugin-jsx-a11y": "^6.3.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react-hooks": "^4",
+    "gh-pages": "^3.1.0",
     "prettier": "^2.1.2"
   }
 }
